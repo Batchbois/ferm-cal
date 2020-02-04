@@ -1,7 +1,7 @@
 class BatchesController < ApplicationController
     def index
         if user_signed_in?
-            @batches = Batch.where(:user_id == current_user.id)
+            @batches = current_user.batches
         else
             @batches = Batch.all
         end
@@ -9,7 +9,7 @@ class BatchesController < ApplicationController
     end
 
     def create
-        batch = Batch.create(batch_params)
+        batch = current_user.create_batch(batch_params)
         if batch.valid?
 
             render json: batch
@@ -19,6 +19,6 @@ class BatchesController < ApplicationController
     end
 
     def batch_params
-        params.require(:batch).permit(:name, :user_id, :ferment, :completed, :description)
+        params.require(:batch).permit(:name, :ferment, :completed, :description)
     end
 end
