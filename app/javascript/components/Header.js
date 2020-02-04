@@ -30,7 +30,7 @@ const Header = (props) => {
 
 export default Header;
 
-// 
-// { signed_in && < /> }
-// { signed_in && < /> }
-// { signed_in && < /> }
+//
+// { signed_in && <Link className="nav-link" to="/" /> }
+// { signed_in && <Link className="nav-link" to="/" /> }
+// { signed_in && <Link className="nav-link" to="/" /> }
