@@ -5,4 +5,6 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :batches
+
+  validates_uniqueness_of :display_name, :email
 end

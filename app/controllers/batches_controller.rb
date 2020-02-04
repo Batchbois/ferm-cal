@@ -5,15 +5,13 @@ class BatchesController < ApplicationController
         else
             @batches = Batch.all
         end
-        render json: @batches
+        render json: @batches.to_json(:include => :tasks)
     end
 
-    # def show
-    #     @batches = Batch.find(params[:id])
-    # end
     def create
         batch = Batch.create(batch_params)
         if batch.valid?
+
             render json: batch
         else
             render json: batch.errors
