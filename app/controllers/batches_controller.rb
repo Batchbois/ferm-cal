@@ -9,7 +9,7 @@ class BatchesController < ApplicationController
     end
 
     def create
-        batch = current_user.create_batch(batch_params)
+        batch = current_user.batches.create(batch_params)
         if batch.valid?
 
             render json: batch
