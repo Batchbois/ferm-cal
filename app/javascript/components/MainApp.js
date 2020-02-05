@@ -29,7 +29,9 @@ class MainApp extends React.Component {
         <Switch>
         <Route exact path= "/" component={NotSignedInLanding}/>
         <Route path="/aboutus" component={AboutUs} />
-        <Route path="/dashboard" component={Dashboard} />
+        <Route path="/dashboard" component={Dashboard}/>
+        
+
         </Switch>
       </Router>
     );
