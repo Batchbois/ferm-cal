@@ -7,24 +7,29 @@ import {
 } from 'react-router-dom';
 
 import Header from './Header';
-import NotSignedInLanding from './landingPage';
-import AboutUs from "./aboutus";
+import NotSignedInLanding from './pages/landingPage';
+import AboutUs from "./pages/aboutus";
+import Dashboard from "./pages/dashboard";
+// import 'bootstrap/dist/js/bootstrap.min.js';
+// when this is included,page doesnt render
+
 
 class MainApp extends React.Component {
 
 
   render () {
-      console.log(this.props)
-      const { signed_in } = this.props
+    const { signed_in } = this.props
     return (
       <Router>
         <Header appProps={this.props}/>
         {!signed_in &&
         <NotSignedInLanding />}
-        <h1>INDEED</h1>
+
 
         <Switch>
-            <Route path="/aboutus" component={AboutUs} />
+        <Route exact path= "/" component={NotSignedInLanding}/>
+        <Route path="/aboutus" component={AboutUs} />
+        <Route path="/dashboard" component={Dashboard} />
         </Switch>
       </Router>
     );
