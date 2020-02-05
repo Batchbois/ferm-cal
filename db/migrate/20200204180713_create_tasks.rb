@@ -5,7 +5,6 @@ class CreateTasks < ActiveRecord::Migration[6.0]
       t.datetime :due
       t.boolean :completed
       t.references :batch, null: false, foreign_key: true
-
       t.timestamps
     end
   end
