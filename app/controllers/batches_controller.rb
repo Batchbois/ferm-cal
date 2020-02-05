@@ -1,4 +1,14 @@
+require_relative './content/default_tasks.rb'
+# imports $default_tasks from the above file
+# these default_tasks are currently hard-coded
+# and will need to be made more specific.
+# Icebox: These become configurable by the user
+
 class BatchesController < ApplicationController
+    def initialize
+        @default_tasks = $default_tasks
+    end
+
     def index
         if user_signed_in?
             batches = current_user.batches
@@ -21,15 +31,14 @@ class BatchesController < ApplicationController
         batch = current_user.batches.create(batch_params)
         if batch.valid?
             # looks for our hard-coded task presets (see below)
-            # default_tasks[batch[:ferment]].each {|task| batch.tasks.create(task)}
-            render json: batch#.to_json(include: :tasks)
+            @default_tasks[batch[:ferment]].each {|task| batch.tasks.create(task)}
+            render json: batch.to_json(include: :tasks)
         else
             render json: batch.errors
         end
     end
 
     def update
-
     end
 
     def destroy
@@ -39,50 +48,4 @@ class BatchesController < ApplicationController
         params.require(:batch).permit(:name, :ferment, :completed, :description)
     end
 
-    # these default_tasks are currently hard-coded
-    # and will need to be made more specific.
-    # Icebox: These become configurable by the user
-    # (as_)
-    default_tasks = {
-        'beer' => [
-            {
-                title: 'First placeholder beer task',
-                description: 'This task is a placeholder beer task!',
-                completed: false,
-                due: 3.days.since(DateTime.now).noon.to_datetime
-            },
-            {
-                title: 'Second placeholder beer task',
-                description: 'This task is a placeholder beer task!',
-                completed: false,
-                due: 7.days.since(DateTime.now).noon.to_datetime
-            },
-            {
-                title: 'Third placeholder beer task',
-                description: 'This task is a placeholder beer task!',
-                completed: false,
-                due: 10.days.since(DateTime.now).noon.to_datetime
-            }
-        ],
-        'pickle' => [
-            {
-                title: 'First placeholder pickle task',
-                description: 'This task is a placeholder beer task!',
-                completed: false,
-                due: 3.days.since(DateTime.now).noon.to_datetime
-            },
-            {
-                title: 'Second placeholder pickle task',
-                description: 'This task is a placeholder beer task!',
-                completed: false,
-                due: 7.days.since(DateTime.now).noon.to_datetime
-            },
-            {
-                title: 'Third placeholder pickle task',
-                description: 'This task is a placeholder beer task!',
-                completed: false,
-                due: 10.days.since(DateTime.now).noon.to_datetime
-            }
-        ]
-    }
 end
