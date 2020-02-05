@@ -21,8 +21,8 @@ class BatchesController < ApplicationController
         batch = current_user.batches.create(batch_params)
         if batch.valid?
             # looks for our hard-coded task presets (see below)
-            default_tasks[batch[:ferment]].each {|task| batch.tasks.create(task)}
-            render json: batch.to_json(include: :tasks)
+            # default_tasks[batch[:ferment]].each {|task| batch.tasks.create(task)}
+            render json: batch#.to_json(include: :tasks)
         else
             render json: batch.errors
         end
