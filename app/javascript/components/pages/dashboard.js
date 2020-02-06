@@ -18,7 +18,7 @@ const Dashboard = () => {
         <Container>
             <Row>
                 <Col sm="6">
-                    <div className="card" class="card text-warning bg-warning mb-3">
+                    <div class="card" className="card text-warning bg-warning mb-3">
                         <div className="card-body">
                             <h4 className="card-title text-white">Tasky Boi</h4>
                                 <ul className="list-group list-group-flush">

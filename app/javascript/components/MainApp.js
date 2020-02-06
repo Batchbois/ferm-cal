@@ -10,6 +10,7 @@ import Header from './Header';
 import NotSignedInLanding from './pages/landingPage';
 import AboutUs from "./pages/aboutus";
 import Dashboard from "./pages/dashboard";
+import BatchShow from "./pages/batchshow";
 // import 'bootstrap/dist/js/bootstrap.min.js';
 // when this is included,page doesnt render
 
@@ -27,11 +28,10 @@ class MainApp extends React.Component {
 
 
         <Switch>
-        <Route exact path= "/" component={NotSignedInLanding}/>
-        <Route path="/aboutus" component={AboutUs} />
-        <Route path="/dashboard" component={Dashboard}/>
-        
-
+            <Route exact path= "/" component={NotSignedInLanding}/>
+            <Route path="/aboutus" component={AboutUs} />
+            <Route path="/dashboard" component={Dashboard}/>
+            <Route path="/batchshow" component={BatchShow}/>
         </Switch>
       </Router>
     );
