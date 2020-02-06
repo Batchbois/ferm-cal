@@ -11,6 +11,7 @@ import NotSignedInLanding from './pages/landingPage';
 import AboutUs from "./pages/aboutus";
 import Dashboard from "./pages/dashboard";
 import BatchShow from "./pages/batchshow";
+import CreateNewBatch from "./pages/createnewbatch";
 // import 'bootstrap/dist/js/bootstrap.min.js';
 // when this is included,page doesnt render
 
@@ -32,6 +33,9 @@ class MainApp extends React.Component {
             <Route path="/aboutus" component={AboutUs} />
             <Route path="/dashboard" component={Dashboard}/>
             <Route path="/batchshow" component={BatchShow}/>
+            <Route path="/newbatch" component={CreateNewBatch}/>
+
+
         </Switch>
       </Router>
     );
