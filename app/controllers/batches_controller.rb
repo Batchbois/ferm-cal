@@ -12,7 +12,7 @@ class BatchesController < ApplicationController
     def index
         if user_signed_in?
             batches = current_user.batches
-            render json: batches.to_json(:include => :tasks)
+            render json: batches.to_json(include: :tasks)
         else
             render status: 403, plain: 'Not signed in'
         end
