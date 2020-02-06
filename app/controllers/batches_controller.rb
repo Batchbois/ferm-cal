@@ -28,13 +28,17 @@ class BatchesController < ApplicationController
     end
 
     def create
-        batch = current_user.batches.create(batch_params)
-        if batch.valid?
-            # looks for our hard-coded task presets (see below)
-            @default_tasks[batch[:ferment]].each {|task| batch.tasks.create(task)}
-            render json: batch.to_json(include: :tasks)
+        if user_signed_in?
+            batch = current_user.batches.create(batch_params)
+            if batch.valid?
+                # looks for our hard-coded task presets (see below)
+                @default_tasks[batch[:ferment]].each {|task| batch.tasks.create(task)}
+                render json: batch.to_json(include: :tasks)
+            else
+                render json: batch.errors, status: 422
+            end
         else
-            render json: batch.errors
+            render status: 403, plain: 'Not signed in'
         end
     end
 
@@ -45,7 +49,7 @@ class BatchesController < ApplicationController
     end
 
     def batch_params
-        params.require(:batch).permit(:name, :ferment, :completed, :description)
+        params.require(:batch).permit(:name, :ferment, :completed, :description, :start_date)
     end
 
 end
