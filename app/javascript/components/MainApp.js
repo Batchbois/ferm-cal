@@ -30,6 +30,11 @@ class MainApp extends React.Component {
                     {due: "04/04/20", description: "walk the kraut", title: 'TASK'},
                     {due: "04/04/20", description: "walk the kraut", title: 'TASK1'},
                     {due: "04/04/20", description: "walk the kraut", title: 'TASK2'}
+                ],
+                notes: [
+                    {date: "04/04/20", note: "walk the kraut"},
+                    {date: "04/04/20", note: "walk the kraut"},
+                    {date: "04/04/20", note: "walk the kraut"}
                 ]},
                 {id: 2,
                 name: "stout",
