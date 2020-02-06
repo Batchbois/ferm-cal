@@ -43,9 +43,29 @@ class BatchesController < ApplicationController
     end
 
     def update
+        if user_signed_in?
+            batch = Batch.find(params[:id])
+            if batch
+                batch.update(batch_params)
+                render json: batch
+            end
+        else
+            render plain: 'not signed in'
+        end
+
     end
 
     def destroy
+        if user_signed_in?
+            batch = Batch.find(params[:id])
+            if batch
+                batch.destroy
+                render plain: 'successful deletion'
+            end
+        else
+            render status: 403, plain: 'Not signed in'
+        end
+
     end
 
     def batch_params

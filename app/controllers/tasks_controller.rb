@@ -2,7 +2,7 @@ class TasksController < ApplicationController
 
     def index
         if user_signed_in?
-            tasks = current_user.tasks
+            tasks = current_user.tasks.sort_by { |v| v.due }
             render json: tasks
         else
             render status: 403, plain: 'Not signed in'
