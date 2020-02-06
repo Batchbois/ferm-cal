@@ -18,28 +18,48 @@ import Calendar from "react-calendar";
 
 
 class MainApp extends React.Component {
-    
+    constructor(props) {
+        super(props)
+        this.state={
+            batches: [
+                {id: 1,
+                name: "Sauerkraut",
+                start_date: "04/02/01",
+                notes: "full of salt, placed in crock",
+                tasks: [
+                    {due: "04/04/20", description: "walk the kraut", title: 'TASK'},
+                    {due: "04/04/20", description: "walk the kraut", title: 'TASK1'},
+                    {due: "04/04/20", description: "walk the kraut", title: 'TASK2'}
+                ]},
+                {id: 2,
+                name: "stout",
+                start_date: "04/02/01",
+                notes: "nice"},
+                {id: 3,
+                name: "food",
+                start_date: "04/02/01",
+                notes: "fun and yum"}
+            ]
+        }
+    }
     render () {
         const { signed_in } = this.props
 
         return (
           <Router>
             <Header appProps={this.props}/>
-            {!signed_in &&
-            <NotSignedInLanding />}
+                <Switch>
+                    <Route exact path= "/" component={signed_in ? Dashboard : NotSignedInLanding}/>
+                    <Route path="/aboutus" component={AboutUs} />
+                    <Route path="/dashboard" component={Dashboard}/>
+                    <Route exact path="/batches" render={(props) =><Batches batches={this.state.batches} />} />
+
+                    <Route exact path="/batches/:id" render={(props) => <BatchShow {...props} batches={this.state.batches}/>}/>
 
 
 
-            <Switch>
-                <Route exact path= "/" component={NotSignedInLanding}/>
-                <Route path="/aboutus" component={AboutUs} />
-                <Route path="/dashboard" component={Dashboard}/>
-                <Route path="/batchshow" component={BatchShow}/>
-                <Route path="/newbatch" component={CreateNewBatch}/>
-
-
-
-            </Switch>
+                    <Route path="/newbatch" component={CreateNewBatch}/>
+                </Switch>
           </Router>
     );
   }
