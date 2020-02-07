@@ -49,13 +49,13 @@ const Header = (props) => {
                     {signed_in && <Link className="nav-link" to="/newbatch">New Batch!</Link>}
                   </NavItem>
                   <NavItem>
-                    {signed_in && <Link className="nav-link" to={sign_out_route}>Sign Out</Link>}
+                    {signed_in && <NavLink className="nav-link" href={sign_out_route}>Sign Out</NavLink>}
                   </NavItem>
                   <NavItem>
-                    {!signed_in && <Link className="nav-link" to={sign_in_route}>Sign In</Link>}
+                    {!signed_in && <NavLink className="nav-link" href={sign_in_route}>Sign In</NavLink>}
                   </NavItem>
                   <NavItem>
-                    {!signed_in && <Link className="nav-link" to="users/sign_up">Sign Up</Link>}
+                    {!signed_in && <NavLink className="nav-link" href="users/sign_up">Sign Up</NavLink>}
                   </NavItem>
                 </Nav>
               </Collapse>
