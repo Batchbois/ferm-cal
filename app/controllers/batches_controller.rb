@@ -32,7 +32,10 @@ class BatchesController < ApplicationController
             batch = current_user.batches.create(batch_params)
             if batch.valid?
                 # looks for our hard-coded task presets (see below)
-                @default_tasks[batch[:ferment]].each {|task| batch.tasks.create(task)}
+                @default_tasks[batch[:ferment]].each do |task|
+                    task[:due] = task[:due].days.since(DateTime.now).noon.to_datetime
+                    batch.tasks.create(task)
+                end
                 render json: batch.to_json(include: :tasks)
             else
                 render json: batch.errors, status: 422

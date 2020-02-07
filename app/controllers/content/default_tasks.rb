@@ -4,19 +4,19 @@ $default_tasks = {
             title: 'First placeholder beer task',
             description: 'This task is a placeholder beer task!',
             completed: false,
-            due: 3.days.since(DateTime.now).noon.to_datetime
+            due: 3
         },
         {
             title: 'Second placeholder beer task',
             description: 'This task is a placeholder beer task!',
             completed: false,
-            due: 7.days.since(DateTime.now).noon.to_datetime
+            due: 7
         },
         {
             title: 'Third placeholder beer task',
             description: 'This task is a placeholder beer task!',
             completed: false,
-            due: 10.days.since(DateTime.now).noon.to_datetime
+            due: 10
         }
     ],
     'pickle' => [
@@ -24,19 +24,19 @@ $default_tasks = {
             title: 'First placeholder pickle task',
             description: 'This task is a placeholder beer task!',
             completed: false,
-            due: 3.days.since(DateTime.now).noon.to_datetime
+            due: 3
         },
         {
             title: 'Second placeholder pickle task',
             description: 'This task is a placeholder beer task!',
             completed: false,
-            due: 7.days.since(DateTime.now).noon.to_datetime
+            due: 7
         },
         {
             title: 'Third placeholder pickle task',
             description: 'This task is a placeholder beer task!',
             completed: false,
-            due: 10.days.since(DateTime.now).noon.to_datetime
+            due: 10
         }
     ]
 }
