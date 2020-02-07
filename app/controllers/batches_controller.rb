@@ -1,4 +1,4 @@
-require_relative './content/default_tasks.rb'
+require_relative '../../lib/content/default_tasks.rb'
 # imports $default_tasks from the above file
 # these default_tasks are currently hard-coded
 # and will need to be made more specific.
