@@ -39,4 +39,11 @@ RSpec.describe TasksController, type: :controller do
         end
     end
 
+
+    describe 'PUT #update', type: :request do
+        it 'it should reject requests if no user is signed in' do
+            put "/tasks/1"
+            expect(response.body).to eq('not signed in')
+        end
+    end
 end
