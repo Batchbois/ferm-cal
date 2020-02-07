@@ -21,47 +21,62 @@ class MainApp extends React.Component {
     constructor(props) {
         super(props)
         this.state={
-            batches: [
-                {id: 1,
-                name: "Sauerkraut",
-                start_date: "04/02/01",
-                notes: "full of salt, placed in crock",
-                tasks: [
-                    {due: "04/04/20", description: "walk the kraut", title: 'TASK'},
-                    {due: "04/04/20", description: "walk the kraut", title: 'TASK1'},
-                    {due: "04/04/20", description: "walk the kraut", title: 'TASK2'}
-                ],
-                notes: [
-                    {date: "04/04/20", note: "walk the kraut"},
-                    {date: "04/04/20", note: "walk the kraut"},
-                    {date: "04/04/20", note: "walk the kraut"}
-                ]},
-                {id: 2,
-                name: "stout",
-                start_date: "04/02/01",
-                notes: "nice"},
-                {id: 3,
-                name: "food",
-                start_date: "04/02/01",
-                notes: "fun and yum"}
-            ]
+            batches: [],
+            tasks: []
         }
     }
+
+    getBatches = () => {
+        return fetch('http://localhost:3000/batches',
+            {method: "GET"}
+        ).then((response)=> {
+            if(response.ok){
+                return(response.json())
+            }
+        })
+        .then((batches)=> {
+            this.setState({batches: batches})
+        })
+    }
+
+    getTasks = () => {
+        return fetch('http://localhost:3000/tasks',
+            {method: "GET"}
+        ).then((response)=> {
+            if(response.ok){
+                return(response.json())
+            }
+        })
+        .then((tasks)=> {
+            this.setState({tasks: tasks})
+        })
+    }
+
+    componentDidMount = () => {
+        this.getBatches()
+        this.getTasks()
+    }
+
     render () {
         const { signed_in } = this.props
+        console.log(this.props.current_user)
 
         return (
           <Router>
             <Header appProps={this.props}/>
                 <Switch>
-                    <Route exact path= "/" component={signed_in ? Dashboard : NotSignedInLanding}/>
+                    <Route exact path= "/" render={() => {
+                        if (signed_in) {
+                            return <Dashboard batches={this.state.batches} tasks={this.state.tasks} />
+                        } else {
+                            return <NotSignedInLanding/>
+                        }
+                    }}/>
                     <Route path="/aboutus" component={AboutUs} />
                     <Route path="/dashboard" component={Dashboard}/>
                     <Route exact path="/batches" render={(props) =><Batches batches={this.state.batches} />} />
 
                     <Route exact path="/batches/:id" render={(props) => <BatchShow {...props} batches={this.state.batches}/>}/>
-
-
 
                     <Route path="/newbatch" component={CreateNewBatch}/>
                 </Switch>
