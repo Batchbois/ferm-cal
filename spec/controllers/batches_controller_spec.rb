@@ -39,7 +39,7 @@ RSpec.describe BatchesController, type: :controller do
             expect(response.status).to eq(422)
             expect(json['name']).to include "can't be blank"
         end
-        it 'automatically creates tasks when creating batches' do
+        it 'successfully creates batches and also creates tasks' do
             sign_in example_user
             batch_params = {
                 batch: {
@@ -80,9 +80,7 @@ RSpec.describe BatchesController, type: :controller do
 
     describe 'DELETE #destroy', type: :request do
         it 'should reject requests if no user is signed in' do
-            example_batch_params = {name: 'Test Batch', ferment: 'beer', completed: false, description: 'This is a test batch', start_date: Date.today}
-            example_batch = example_user.batches.create(example_batch_params)
-            delete "/batches/#{example_batch.id}"
+            delete "/batches/1"
             expect(response.body).to eq('Not signed in')
         end
         it 'should disallow deletions when no such batch exists' do
