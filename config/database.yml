@@ -75,11 +75,6 @@ test:
 #
 # You can use this database configuration with:
 #
-#   production:
-#     url: <%= ENV['DATABASE_URL'] %>
-#
 production:
-  <<: *default
-  database: ferm_cal_production
-  username: ferm_cal
-  password: <%= ENV['FERM_CAL_DATABASE_PASSWORD'] %>
+    url: <%= ENV['DATABASE_URL'] %>
+    

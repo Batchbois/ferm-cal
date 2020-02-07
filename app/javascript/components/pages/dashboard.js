@@ -44,9 +44,9 @@ console.log(props)
                     <div className="card-body">
                         <h4 className="card-title text-white" >Active Boi</h4>
                             <ul className="list-group list-group-flush">
-                                <li className="list-group-item">light beer batch</li>
-                                <li className="list-group-item">moms beer batch</li>
-                                <li className="list-group-item">dark beer batch</li>
+                                <li>
+
+                                </li>
                             </ul>
                         </div>
                     </div>
