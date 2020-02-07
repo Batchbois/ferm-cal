@@ -12,32 +12,75 @@ import AboutUs from "./pages/aboutus";
 import Dashboard from "./pages/dashboard";
 import BatchShow from "./pages/batchshow";
 import CreateNewBatch from "./pages/createnewbatch";
+import Calendar from "react-calendar";
 // import 'bootstrap/dist/js/bootstrap.min.js';
 // when this is included,page doesnt render
 
 
 class MainApp extends React.Component {
+    constructor(props) {
+        super(props)
+        this.state={
+            batches: [],
+            tasks: []
+        }
+    }
 
+    getBatches = () => {
+        return fetch('http://localhost:3000/batches',
+            {method: "GET"}
+        ).then((response)=> {
+            if(response.ok){
+                return(response.json())
+            }
+        })
+        .then((batches)=> {
+            this.setState({batches: batches})
+        })
+    }
 
-  render () {
-    const { signed_in } = this.props
-    return (
-      <Router>
-        <Header appProps={this.props}/>
-        {!signed_in &&
-        <NotSignedInLanding />}
+    getTasks = () => {
+        return fetch('http://localhost:3000/tasks',
+            {method: "GET"}
+        ).then((response)=> {
+            if(response.ok){
+                return(response.json())
+            }
+        })
+        .then((tasks)=> {
+            this.setState({tasks: tasks})
+        })
+    }
 
+    componentDidMount = () => {
+        this.getBatches()
+        this.getTasks()
+    }
 
-        <Switch>
-            <Route exact path= "/" component={NotSignedInLanding}/>
-            <Route path="/aboutus" component={AboutUs} />
-            <Route path="/dashboard" component={Dashboard}/>
-            <Route path="/batchshow" component={BatchShow}/>
-            <Route path="/newbatch" component={CreateNewBatch}/>
+    render () {
+        const { signed_in } = this.props
+        console.log(this.props.current_user)
 
+        return (
+          <Router>
+            <Header appProps={this.props}/>
+                <Switch>
+                    <Route exact path= "/" render={() => {
+                        if (signed_in) {
+                            return <Dashboard batches={this.state.batches} tasks={this.state.tasks} />
+                        } else {
+                            return <NotSignedInLanding/>
+                        }
+                    }}/>
+                    <Route path="/aboutus" component={AboutUs} />
+                    <Route path="/dashboard" component={Dashboard}/>
+                    <Route exact path="/batches" render={(props) =><Batches batches={this.state.batches} />} />
 
-        </Switch>
-      </Router>
+                    <Route exact path="/batches/:id" render={(props) => <BatchShow {...props} batches={this.state.batches}/>}/>
+
+                    <Route path="/newbatch" component={CreateNewBatch}/>
+                </Switch>
+          </Router>
     );
   }
 }
