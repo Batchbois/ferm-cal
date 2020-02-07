@@ -29,8 +29,7 @@ class CreateNewBatch extends React.Component {
     }
 
 
-    handleSumbit = () => {
-        console.log(this.state.form)
+    handleSubmit = () => {
         this.props.onSubmit(this.state.form)
         // .then(()=> {
         //     this.setState({success:true})
@@ -39,15 +38,12 @@ class CreateNewBatch extends React.Component {
 
     handleChange = (event) => {
         let { form } = this.state
-    console.log(form)
         form[event.target.name] = event.target.value
         this.setState({form: form})
     }
 
 render() {
     let { name, ferment, completed, description } = this.state.form
-    let { handleChange, handleSubmit } = this;
-    console.log(this.state.form)
   return (
     <div>
         <Container>
@@ -57,27 +53,27 @@ render() {
 
                         <FormGroup>
                             <Label for="name">Batch Name</Label>
-                            <Input onChange={handleChange} type="text" name="name" id="example_batch_name" placeholder="Grand Ol' Pickles"/>
+                            <Input onChange={this.handleChange} value= {this.state.form.name} type="text" name="name" id="name" placeholder="Grand Ol' Pickles"/>
                         </FormGroup>
 
                         <FormGroup>
                             <Label for="start_date">Batch Birthday</Label>
-                            <Input onChange={handleChange} type="date" name="start_date" id="example_date"  />
+                            <Input onChange={this.handleChange} value= {this.state.form.start_date} type="date" name="start_date" id="start_date"  />
                         </FormGroup>
 
                         <FormGroup>
                             <Label for="ferment">Fermentation Type</Label>
-                            <Input onChange={handleChange} type="select" name="ferment" id="select">
-                              <option >beer</option>
-                              <option >pickle</option>
+                            <Input onChange={this.handleChange} value= {this.state.form.ferment} type="select" name="ferment" id="ferment">
+                              <option>beer</option>
+                              <option>pickle</option>
                             </Input>
                         </FormGroup>
 
                         <FormGroup>
                             <Label for="description">Description:</Label>
-                            <Input onChange={handleChange} type="textarea" name="description" id="description" placeholder="Notes about ingredients, temperature, quantity, etc."/>
+                            <Input onChange={this.handleChange} value= {this.state.form.description}  type="textarea" name="description" id="description" placeholder="Notes about ingredients, temperature, quantity, etc."/>
                         </FormGroup>
-                        <Button onClick= {handleSubmit} type="submit">Submit</Button>
+                        <Button onClick= {this.handleSubmit} type="submit">Submit</Button>
                     </Form>
                     {/* this.state.success && <Redirect to="/batches" /> */}
                 </Col>

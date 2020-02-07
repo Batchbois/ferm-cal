@@ -40,7 +40,6 @@ class MainApp extends React.Component {
     }
 
     createBatch = (batch)=> {
-        console.log(batch)
           return fetch('http://localhost:3000/batches', {
               body: JSON.stringify(batch),
               headers: {
@@ -49,7 +48,6 @@ class MainApp extends React.Component {
               method: "POST"
           })
           .then((response) => {
-              console.log(response)
               if(response.ok){
                   return this.getBatches()
               }
