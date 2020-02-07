@@ -37,7 +37,15 @@ class TasksController < ApplicationController
     end
 
     def destroy
-
+        if user_signed_in?
+            task = Task.find(params[:id])
+            if task
+                task.destroy
+                render plain: 'successful deletion'
+            end
+        else
+            render status: 403, plain: 'Not signed in'
+        end
     end
 
     def task_params
