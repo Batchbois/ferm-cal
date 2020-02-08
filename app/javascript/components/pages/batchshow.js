@@ -16,7 +16,6 @@ import Delete from 'images/delete.svg'
 const BatchShow = (props) => {
     const { id } = props.match.params
     const batch = props.batches.find((batch) => batch.id == parseInt(id))
-
     return(
         <div>
             <Row>
@@ -25,17 +24,6 @@ const BatchShow = (props) => {
                         <CardBody>
                             <CardTitle className="card-title text-white"><h2>{batch.name}</h2></CardTitle>
                             <CardSubtitle className="card-title text-white">Start Date: {batch.start_date}</CardSubtitle>
-
-                                <ul className="list-group list-group-flush">
-                                    {batch.notes.map((note,index)=> {
-                                        return(
-
-                                            <li key={index} className="list-group-item">
-                                                <h4>{note.date}: {note.note}</h4>
-                                            </li>
-                                        )
-                                    })}
-                                </ul>
                         </CardBody>
                     </Card>
                 </Col>
@@ -65,3 +53,15 @@ const BatchShow = (props) => {
 }
 
 export default BatchShow;
+
+//adding notes soon
+// <ul className="list-group list-group-flush">
+//     {batch.notes.map((note,index)=> {
+//         return(
+//
+//             <li key={index} className="list-group-item">
+//                 <h4>{note.date}: {note.note}</h4>
+//             </li>
+//         )
+//     })}
+// </ul>
