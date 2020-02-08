@@ -36,6 +36,8 @@ class CreateNewBatch extends React.Component {
         // })
     }
 
+    
+
     handleChange = (event) => {
         let { form } = this.state
         form[event.target.name] = event.target.value

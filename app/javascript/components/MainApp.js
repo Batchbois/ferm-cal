@@ -76,8 +76,6 @@ class MainApp extends React.Component {
 
     render () {
         const { signed_in } = this.props
-        console.log(this.props.current_user)
-        console.log(this.state)
         return (
           <Router>
             <Header appProps={this.props}/>

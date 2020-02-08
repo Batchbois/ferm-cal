@@ -14,10 +14,8 @@ import {
 import Delete from 'images/delete.svg'
 
 const BatchShow = (props) => {
-    console.log(props)
     const { id } = props.match.params
     const batch = props.batches.find((batch) => batch.id == parseInt(id))
-    console.log(batch)
     return(
         <div>
             <Row>

@@ -18,7 +18,6 @@ import {
 
 const Dashboard = (props) => {
     let { batches, tasks } = props
-console.log(props)
     return (
         <Container>
             <Row>
@@ -47,9 +46,9 @@ console.log(props)
                                     {batches.map((batch,index)=> {
                                         return(
                                             <li key={index} className="list-group-item">
-                                            <Link to={`/batches/${batch.id}`}>
-                                                <h4>{batch.name} </h4>
-                                            </Link>
+                                                <Link to={`/batches/${batch.id}`}>
+                                                    <h4>{batch.name} </h4>
+                                                </Link>
                                                 <h6>{batch.ferment} Start: {batch.start_date}</h6>
                                             </li>
                                         )
