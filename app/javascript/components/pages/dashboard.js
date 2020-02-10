@@ -18,7 +18,6 @@ import {
 
 const Dashboard = (props) => {
     let { batches, tasks } = props
-console.log(props)
     return (
         <Container>
             <Row>
@@ -30,7 +29,7 @@ console.log(props)
                                     {tasks.map((task,index)=> {
                                         return(
                                             <li key={index} className="list-group-item">
-                                                <h4>{task.start_date}: {task.description}</h4>
+                                                <h4>{task.date}: {task.description}</h4>
                                             </li>
                                         )
                                     })}
@@ -40,16 +39,23 @@ console.log(props)
                 </Col>
 
             <Col sm="6">
-                <div className="card" class="card text-info bg-info mb-3" >
-                    <div className="card-body">
-                        <h4 className="card-title text-white" >Active Boi</h4>
-                            <ul className="list-group list-group-flush">
-                                <li>
-
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
+                    <Card className="card text-info bg-info mb-3" id= "batches">
+                        <CardBody>
+                            <CardTitle className="card-title text-white"><h2>Batches</h2></CardTitle>
+                                <ul className="list-group list-group-flush">
+                                    {batches.map((batch,index)=> {
+                                        return(
+                                            <li key={index} className="list-group-item">
+                                                <Link to={`/batches/${batch.id}`}>
+                                                    <h4>{batch.name} </h4>
+                                                </Link>
+                                                <h6>{batch.ferment} Start: {batch.start_date}</h6>
+                                            </li>
+                                        )
+                                    })}
+                                </ul>
+                        </CardBody>
+                    </Card>
                 <Row>
                     <Col>
                     <Button type="button" className="btn btn-secondary btn-lg btn-block" >Create New Batch!</Button>

@@ -39,6 +39,23 @@ class MainApp extends React.Component {
         })
     }
 
+    createBatch = (batch)=> {
+          return fetch('http://localhost:3000/batches', {
+              body: JSON.stringify(batch),
+              headers: {
+                  'Content-Type': 'application/json'
+              },
+              method: "POST"
+          })
+          .then((response) => {
+              if(response.ok){
+                  return this.getBatches()
+              }
+          })
+      }
+
+
+
     getTasks = () => {
         return fetch('http://localhost:3000/tasks',
             {method: "GET"}
@@ -59,8 +76,6 @@ class MainApp extends React.Component {
 
     render () {
         const { signed_in } = this.props
-        console.log(this.props.current_user)
-
         return (
           <Router>
             <Header appProps={this.props}/>
@@ -76,9 +91,11 @@ class MainApp extends React.Component {
                     <Route path="/dashboard" component={Dashboard}/>
                     <Route exact path="/batches" render={(props) =><Batches batches={this.state.batches} />} />
 
-                    <Route exact path="/batches/:id" render={(props) => <BatchShow {...props} batches={this.state.batches}/>}/>
+                    <Route exact path="/batches/:id" render={(props) =><BatchShow {...props} batches={this.state.batches}/>}/>
 
-                    <Route path="/newbatch" component={CreateNewBatch}/>
+                    <Route path="/newbatch" render={(props) =><CreateNewBatch onSubmit={this.createBatch}/>}/>
+
+
                 </Switch>
           </Router>
     );
