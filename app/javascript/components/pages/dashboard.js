@@ -46,7 +46,7 @@ const Dashboard = (props) => {
                                     {batches.map((batch,index)=> {
                                         return(
                                             <li key={index} className="list-group-item">
-                                                <Link to={`/batches/${batch.id}`}>
+                                                <Link to={`/batches/${batch.id}`} style={{ textDecoration: 'none' }}>
                                                     <h4>{batch.name} </h4>
                                                 </Link>
                                                 <h6>{batch.ferment} Start: {batch.start_date}</h6>
@@ -58,7 +58,7 @@ const Dashboard = (props) => {
                     </Card>
                 <Row>
                     <Col>
-                    <Button type="button" className="btn btn-secondary btn-lg btn-block" >Create New Batch!</Button>
+                    <Link to="/newbatch"  style={{ textDecoration: 'none' }}> <Button type="button" className="btn btn-secondary btn-lg btn-block" >Create New Batch!</Button> </Link>
                     </Col>
                 </Row>
             </Col>

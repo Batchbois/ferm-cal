@@ -9,13 +9,24 @@ import {
     Navbar,
     NavbarText,
     Col,
-    Row
+    Row,
+    Button
 } from 'reactstrap'
+import { Link } from "react-router-dom";
 import Delete from 'images/delete.svg'
 
-const BatchShow = (props) => {
-    const { id } = props.match.params
-    const batch = props.batches.find((batch) => batch.id == parseInt(id))
+// const BatchShow = (props) => {
+class BatchShow extends React.Component {
+    constructor(props) {
+        super(props)
+        this.state = {
+            batch: []
+        }
+    }
+    render () {
+        const id  = this.props.match.params.id
+        const batch = this.props.batches.find((batch) => batch.id == parseInt(id))
+
     return(
         <div>
             <Row>
@@ -26,6 +37,16 @@ const BatchShow = (props) => {
                             <CardSubtitle className="card-title text-white">Start Date: {batch.start_date}</CardSubtitle>
                         </CardBody>
                     </Card>
+                    <Row>
+                        <Link to="/newbatch"  style={{ textDecoration: 'none' }}>
+                            <Button type="button" className="btn btn-secondary btn-lg">Edit</Button>
+                        </Link>
+                        <Link to="/newbatch"  style={{ textDecoration: 'none' }}>
+                            <Button type="button" className="btn btn-secondary btn-lg" onClick={() => {this.props.deleteBatch(batch)}}>Delete</Button>
+                        </Link>
+                    </Row>
+
+
                 </Col>
                 <Col sm="6">
                     <Card className="card text-info bg-info mb-3">
@@ -49,7 +70,7 @@ const BatchShow = (props) => {
 
 
 
-    )
+    )}
 }
 
 export default BatchShow;
