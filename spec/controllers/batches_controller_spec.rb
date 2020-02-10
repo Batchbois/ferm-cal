@@ -85,7 +85,7 @@ RSpec.describe BatchesController, type: :controller do
         end
         it 'should disallow deletions when no such batch exists' do
             sign_in example_user
-            expect { delete "/batches/1" }.to raise_error
+            expect { delete "/batches/1" }.to raise_error(ActiveRecord::RecordNotFound)
         end
         it 'should destroy what we want it to' do
             sign_in example_user
