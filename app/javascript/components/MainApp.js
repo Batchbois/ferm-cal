@@ -27,7 +27,7 @@ class MainApp extends React.Component {
     }
 
     getBatches = () => {
-        return fetch('http://localhost:3000/batches',
+        return fetch('/batches',
             {method: "GET"}
         ).then((response)=> {
             if(response.ok){
@@ -40,7 +40,7 @@ class MainApp extends React.Component {
     }
 
     createBatch = (batch)=> {
-          return fetch('http://localhost:3000/batches', {
+          return fetch('http://localhost:3000/batches/' , {
               body: JSON.stringify(batch),
               headers: {
                   'Content-Type': 'application/json'
@@ -53,6 +53,26 @@ class MainApp extends React.Component {
               }
           })
       }
+
+    deleteBatch = (batch) => {
+        console.log(batch);
+        return fetch('/batches/' + batch.id, {
+            body: JSON.stringify(batch),
+            headers: {
+                'Content-Type': 'batch/json'
+            },
+            method: "DELETE"
+        })
+        //currently having the delete response just be the same page so that we can read the error msg
+        .then((response) => {
+            window.location.href = "/";
+        })
+    //     .catch(error => {
+    //         console.log(error)
+    //         this.setState({errors: error})
+    //     })
+    }
+
 
 
 
@@ -76,6 +96,7 @@ class MainApp extends React.Component {
 
     render () {
         const { signed_in } = this.props
+        const { batches } = this.state
         return (
           <Router>
             <Header appProps={this.props}/>
@@ -89,9 +110,11 @@ class MainApp extends React.Component {
                     }}/>
                     <Route path="/aboutus" component={AboutUs} />
                     <Route path="/dashboard" component={Dashboard}/>
-                    <Route exact path="/batches" render={(props) =><Batches batches={this.state.batches} />} />
 
-                    <Route exact path="/batches/:id" render={(props) =><BatchShow {...props} batches={this.state.batches}/>}/>
+
+                    <Route exact path="/batches/:id" render={(props) =><BatchShow {...props} batches={batches} deleteBatch={this.deleteBatch}/>}/>
+
+
 
                     <Route path="/newbatch" render={(props) =><CreateNewBatch onSubmit={this.createBatch}/>}/>
 
@@ -103,3 +126,5 @@ class MainApp extends React.Component {
 }
 
 export default MainApp
+
+// <Route exact path="/batches" render={(props) =><Batches batches={this.state.batches} />} />
