@@ -40,7 +40,7 @@ class MainApp extends React.Component {
     }
 
     createBatch = (batch)=> {
-          return fetch('/batches/' + batch.id, {
+          return fetch('http://localhost:3000/batches/' , {
               body: JSON.stringify(batch),
               headers: {
                   'Content-Type': 'application/json'
