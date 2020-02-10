@@ -12,6 +12,7 @@ import AboutUs from "./pages/aboutus";
 import Dashboard from "./pages/dashboard";
 import BatchShow from "./pages/batchshow";
 import CreateNewBatch from "./pages/createnewbatch";
+import UpdateBatch from './pages/batchUpdate';
 import Calendar from "react-calendar";
 // import 'bootstrap/dist/js/bootstrap.min.js';
 // when this is included,page doesnt render
@@ -53,6 +54,21 @@ class MainApp extends React.Component {
               }
           })
       }
+
+    updateBatch = (batch)=> {
+            return fetch('/batches/' + batch.id, {
+                body: JSON.stringify(batch),
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                method: "PATCH"
+            })
+            .then((response) => {
+                if(response.ok){
+                    return this.getBatches()
+                }
+            })
+        }
 
     deleteBatch = (batch) => {
         console.log(batch);
@@ -112,8 +128,8 @@ class MainApp extends React.Component {
                     <Route path="/dashboard" component={Dashboard}/>
 
 
-                    <Route exact path="/batches/:id" render={(props) =><BatchShow {...props} batches={batches} deleteBatch={this.deleteBatch}/>}/>
-
+                    <Route exact path="/batches/:id" render={(props) =><BatchShow {...props} batches={batches} deleteBatch={this.deleteBatch} updateBatch={this.updateBatch}/>}/>
+                    <Route exact path="/batches/update/:id" component={UpdateBatch}/>
 
 
                     <Route path="/newbatch" render={(props) =><CreateNewBatch onSubmit={this.createBatch}/>}/>
