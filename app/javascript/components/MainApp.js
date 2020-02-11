@@ -9,11 +9,14 @@ import {
 import Header from './Header';
 import NotSignedInLanding from './pages/landingPage';
 import AboutUs from "./pages/aboutus";
+import Archive from "./pages/archive";
+import Active from "./pages/active";
+import Tasks from "./pages/tasks";
 import Dashboard from "./pages/dashboard";
 import BatchShow from "./pages/batchshow";
 import CreateNewBatch from "./pages/createnewbatch";
 import UpdateBatch from './pages/batchUpdate';
-import Calendar from "react-calendar";
+// import Calendar from "react-calendar";
 // import 'bootstrap/dist/js/bootstrap.min.js';
 // when this is included,page doesnt render
 
@@ -57,18 +60,21 @@ class MainApp extends React.Component {
 
     updateBatch = (batch)=> {
             return fetch('/batches/' + batch.id, {
-                body: JSON.stringify(batch),
+                method: "PUT",
                 headers: {
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/json',
                 },
-                method: "PATCH"
+                body: JSON.stringify(batch),
             })
-            .then((response) => {
-                if(response.ok){
-                    return this.getBatches()
-                }
-            })
+            .then(resp =>  console.log(resp))
+            // .then((response) => {
+            //     if(response.ok){
+            //         return this.getBatches()
+            //     }
+            // })
         }
+
+
 
     deleteBatch = (batch) => {
         console.log(batch);
@@ -79,7 +85,6 @@ class MainApp extends React.Component {
             },
             method: "DELETE"
         })
-        //currently having the delete response just be the same page so that we can read the error msg
         .then((response) => {
             window.location.href = "/";
         })
@@ -126,10 +131,12 @@ class MainApp extends React.Component {
                     }}/>
                     <Route path="/aboutus" component={AboutUs} />
                     <Route path="/dashboard" component={Dashboard}/>
+                    <Route path="/archive" component={Archive} />
+                    <Route path="/tasks" component={Tasks} />
+                    <Route path="/active" component={Active} />
 
+                    <Route exact path="/batches/:id" render={(props) =><BatchShow {...props} batches={batches} deleteBatch={this.deleteBatch} updateBatch={this.updateBatch} />}/>
 
-                    <Route exact path="/batches/:id" render={(props) =><BatchShow {...props} batches={batches} deleteBatch={this.deleteBatch} updateBatch={this.updateBatch}/>}/>
-                    <Route exact path="/batches/update/:id" component={UpdateBatch}/>
 
 
                     <Route path="/newbatch" render={(props) =><CreateNewBatch onSubmit={this.createBatch}/>}/>
@@ -142,5 +149,20 @@ class MainApp extends React.Component {
 }
 
 export default MainApp
+
+ //
+ // this is update method from code review videos and has mode: cors unlike our version
+ //         updateBatch(id, batch) {
+ //           return fetch('batches/' + id, {
+ //              method: 'PATCH',
+ //              mode: 'CORS',
+ //              body: JSON.stringify(batch),
+ //              headers: {
+ //                'Content-Type': 'application/json'
+ //              }
+ //               }).then(res => {
+ //                   return res;
+ //               }).catch(err => err);
+ //           }
 
 // <Route exact path="/batches" render={(props) =><Batches batches={this.state.batches} />} />

@@ -53,7 +53,7 @@ class BatchesController < ApplicationController
                 render json: batch
             end
         else
-            render plain: 'not signed in'
+            render plain: 'Not signed in'
         end
 
     end

@@ -28,15 +28,12 @@ class CreateNewBatch extends React.Component {
         }
     }
 
-
     handleSubmit = () => {
         this.props.onSubmit(this.state.form)
         // .then(()=> {
         //     this.setState({success:true})
         // })
     }
-
-
 
     handleChange = (event) => {
         let { form } = this.state

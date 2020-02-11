@@ -43,7 +43,7 @@ const Header = (props) => {
                     {signed_in && <Link className="nav-link" to="/active">Active</Link>}
                   </NavItem>
                   <NavItem>
-                    {signed_in && <Link className="nav-link" to="/achive">Archive</Link>}
+                    {signed_in && <Link className="nav-link" to="/archive">Archive</Link>}
                   </NavItem>
                   <NavItem>
                     {signed_in && <Link className="nav-link" to="/newbatch">New Batch!</Link>}

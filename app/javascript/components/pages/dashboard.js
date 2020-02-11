@@ -18,14 +18,16 @@ import {
 
 const Dashboard = (props) => {
     let { batches, tasks } = props
+    const taskSize = {"maxHeight": "500px", "overflowY": "scroll"}
+    const batchSize = {"maxHeight": "450px", "overflowY": "scroll"}
     return (
-        <Container>
+        <Container >
             <Row>
                 <Col sm ="6">
-                    <Card className="card text-warning bg-warning mb-3" id= "tasks upcoming">
+                    <Card className="card text-warning bg-warning mb-3" >
                         <CardBody>
                             <CardTitle className="card-title text-white"><h2>Upcoming Tasks</h2></CardTitle>
-                                <ul className="list-group list-group-flush">
+                                <ul className="list-group list-group-flush" id= "tasks-upcoming" style={taskSize}>
                                     {tasks.map((task,index)=> {
                                         return(
                                             <li key={index} className="list-group-item">
@@ -42,7 +44,7 @@ const Dashboard = (props) => {
                     <Card className="card text-info bg-info mb-3" id= "batches">
                         <CardBody>
                             <CardTitle className="card-title text-white"><h2>Batches</h2></CardTitle>
-                                <ul className="list-group list-group-flush">
+                                <ul className="list-group list-group-flush" style={taskSize}>
                                     {batches.map((batch,index)=> {
                                         return(
                                             <li key={index} className="list-group-item">

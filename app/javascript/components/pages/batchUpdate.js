@@ -1,9 +1,29 @@
 import React from 'react';
-import CreateNewBatch from './createnewbatch'
+import Form from './createnewbatch'
+
 
 const UpdateBatch = () => {
+
+    handleSubmit = () => {
+
+        this.props.onSubmit(this.state.form)
+        // .then(()=> {
+        //     this.setState({success:true})
+        // })
+    }
+
+
+
     return(
-        <h1> this works </h1>
+        <div>
+            <Form onSubmit={this.handleSubmit}
+                name={state.batch.name}
+                ferment={state.batch.ferment}
+                description={state.batch.description}
+                start_date={state.batch.start_date}>
+            </Form>
+        </div>
+
     )
 }
 

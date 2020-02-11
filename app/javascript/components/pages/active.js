@@ -3,14 +3,14 @@ import {
     Container
 } from 'react-bootstrap';
 
-const Tasks = () => {
+const Active = () => {
     return(
         <Container>
             <h1> FermCal </h1>
                 <br/>
-            <h4> Tasks</h4>
+            <h4> ACTIVE</h4>
         </Container>
     )
 }
 
-export default Tasks;
+export default Active;
