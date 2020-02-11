@@ -1,7 +1,7 @@
 import React from 'react';
 import {
     Container
-} from 'react-bootstrap';
+} from 'reactstrap';
 
 const Archive = () => {
     return(

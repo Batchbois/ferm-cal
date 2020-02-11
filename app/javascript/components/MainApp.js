@@ -31,7 +31,7 @@ class MainApp extends React.Component {
     }
 
     getBatches = () => {
-        return fetch('/batches',
+        fetch('/batches',
             {method: "GET"}
         ).then((response)=> {
             if(response.ok){
@@ -44,12 +44,12 @@ class MainApp extends React.Component {
     }
 
     createBatch = (batch)=> {
-          return fetch('http://localhost:3000/batches/' , {
-              body: JSON.stringify(batch),
-              headers: {
-                  'Content-Type': 'application/json'
-              },
-              method: "POST"
+         fetch('http://localhost:3000/batches/' , {
+            body: JSON.stringify(batch),
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            method: "POST"
           })
           .then((response) => {
               if(response.ok){
@@ -59,12 +59,12 @@ class MainApp extends React.Component {
       }
 
     updateBatch = (batch)=> {
-            return fetch('/batches/' + batch.id, {
-                method: "PUT",
-                headers: {
+        fetch('/batches/' + batch.id, {
+            method: "PUT",
+            headers: {
                     'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(batch),
+            },
+            body: JSON.stringify(batch),
             })
             .then(resp =>  console.log(resp))
             // .then((response) => {
@@ -74,11 +74,9 @@ class MainApp extends React.Component {
             // })
         }
 
-
-
     deleteBatch = (batch) => {
         console.log(batch);
-        return fetch('/batches/' + batch.id, {
+        fetch('/batches/' + batch.id, {
             body: JSON.stringify(batch),
             headers: {
                 'Content-Type': 'batch/json'
@@ -93,9 +91,6 @@ class MainApp extends React.Component {
     //         this.setState({errors: error})
     //     })
     }
-
-
-
 
     getTasks = () => {
         return fetch('http://localhost:3000/tasks',
@@ -117,7 +112,7 @@ class MainApp extends React.Component {
 
     render () {
         const { signed_in } = this.props
-        const { batches } = this.state
+        const { batches, tasks } = this.state
         return (
           <Router>
             <Header appProps={this.props}/>
@@ -131,10 +126,9 @@ class MainApp extends React.Component {
                     }}/>
                     <Route path="/aboutus" component={AboutUs} />
                     <Route path="/dashboard" component={Dashboard}/>
-                    <Route path="/archive" component={Archive} />
-                    <Route path="/tasks" component={Tasks} />
-                    <Route path="/active" component={Active} />
-
+                    <Route path="/archive" render={(props) =><Archive {...props} batches={batches}/>}/>
+                    <Route path="/tasks" render={(props) =><Tasks {...props} tasks={tasks}/>}/>
+                    <Route path="/active" render={(props) =><Active {...props} batches={batches}/>}/>
                     <Route exact path="/batches/:id" render={(props) =><BatchShow {...props} batches={batches} deleteBatch={this.deleteBatch} updateBatch={this.updateBatch} />}/>
 
 

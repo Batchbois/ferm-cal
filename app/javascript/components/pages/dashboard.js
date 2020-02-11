@@ -31,7 +31,7 @@ const Dashboard = (props) => {
                                     {tasks.map((task,index)=> {
                                         return(
                                             <li key={index} className="list-group-item">
-                                                <h4>{task.date}: {task.description}</h4>
+                                                <h6>{task.due}: {task.description}</h6>
                                             </li>
                                         )
                                     })}
@@ -44,7 +44,7 @@ const Dashboard = (props) => {
                     <Card className="card text-info bg-info mb-3" id= "batches">
                         <CardBody>
                             <CardTitle className="card-title text-white"><h2>Batches</h2></CardTitle>
-                                <ul className="list-group list-group-flush" style={taskSize}>
+                                <ul className="list-group list-group-flush" style={batchSize}>
                                     {batches.map((batch,index)=> {
                                         return(
                                             <li key={index} className="list-group-item">
