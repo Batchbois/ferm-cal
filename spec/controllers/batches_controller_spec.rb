@@ -2,6 +2,7 @@ require 'rails_helper'
 #see rails_helper for final line where devise is enabled
 
 RSpec.describe BatchesController, type: :controller do
+
     let!(:example_user) { User.create(email: 'test@test.test', display_name: 'test', password: 'password', password_confirmation: 'password') }
     describe 'GET #index', type: :request do
         it 'rejects the request when user is not signed in' do
