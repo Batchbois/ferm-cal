@@ -1,5 +1,6 @@
 require 'rails_helper'
 RSpec.describe TasksController, type: :controller do
+
     let!(:example_user) { User.create(email: 'test@test.test', display_name: 'test', password: 'password', password_confirmation: 'password') }
     let!(:example_batch) { example_user.batches.create(name: 'Test Batch', ferment: 'beer', completed: false, description: 'This is a test batch', start_date: Date.today) }
     describe 'GET #index', type: :request do
