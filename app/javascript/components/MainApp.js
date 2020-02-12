@@ -73,7 +73,7 @@ class MainApp extends React.Component {
 
 
 
-                    <Route path="/newbatch" render={(props) =><CreateNewBatch/>}/>
+                    <Route path="/newbatch" render={(props) =><CreateNewBatch onSubmit={this.createBatch}/>}/>
 
 
                 </Switch>

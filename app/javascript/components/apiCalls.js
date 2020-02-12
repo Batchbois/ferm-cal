@@ -13,12 +13,7 @@ export const createBatch = (batch)=> {
         },
         method: "POST"
       })
-      .then((response) => {
-          if(response.ok){
-              return this.getBatches()
-          }
-      })
-  }
+ }
 
 export const updateBatch = (batch)=> {
     return fetch('/batches/' + batch.id, {
@@ -28,13 +23,7 @@ export const updateBatch = (batch)=> {
         },
         body: JSON.stringify(batch),
         })
-        .then(resp =>  console.log(resp))
-        // .then((response) => {
-        //     if(response.ok){
-        //         return this.getBatches()
-        //     }
-        // })
-    }
+}
 
 
     //reload i think thats done and add react router redirect
