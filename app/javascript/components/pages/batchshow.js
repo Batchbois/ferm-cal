@@ -13,9 +13,8 @@ import {
     Button
 } from 'reactstrap'
 import { Link } from "react-router-dom";
+import { getBatches, deleteBatch, updateBatch } from '../apiCalls.js';
 
-
-// const BatchShow = (props) => {
 class BatchShow extends React.Component {
     constructor(props) {
         super(props)
@@ -23,9 +22,34 @@ class BatchShow extends React.Component {
             batch: []
         }
     }
+    componentDidMount = () => {
+        this.getBatchItem()
+    }
+
+
+    getBatchItem = (batch) => {
+        this.setState({batch: batch})
+    }
+
+    getBatchList = (batches) => {
+        getBatches()
+    }
+
+    deletedBatch = (batch) => {
+        console.log("delete");
+        deleteBatch(batch)
+        .then((response) => {
+            this.getBatchList()
+
+        } )
+        .catch(error => console.log(error))
+    }
+
     render () {
         const id  = this.props.match.params.id
         const batch = this.props.batches.find((batch) => batch.id == parseInt(id))
+
+
 
     return(
         <div>
@@ -39,10 +63,10 @@ class BatchShow extends React.Component {
                     </Card>
                     <Row>
                         <Link to="/newbatch"  style={{ textDecoration: 'none' }}>
-                            <Button type="button" className="btn btn-secondary btn-lg" onClick={() => {this.props.updateBatch(batch)}}>Edit</Button>
+                            <Button type="button" className="btn btn-secondary btn-lg" onClick={() => {this.updateBatch(batch)}}>Edit</Button>
                         </Link>
                         <Link to="/newbatch"  style={{ textDecoration: 'none' }}>
-                            <Button type="button" className="btn btn-secondary btn-lg" onClick={() => {this.props.deleteBatch(batch)}}>Delete</Button>
+                            <Button type="button" className="btn btn-secondary btn-lg" onClick={() => {this.deletedBatch(batch)}}>Delete</Button>
                         </Link>
                     </Row>
 

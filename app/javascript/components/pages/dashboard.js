@@ -36,7 +36,7 @@ const Dashboard = (props) => {
                                                 <FormGroup check>
                                                  <Label check>
                                                   <Input type="checkbox" />{' '}
-                                                 Complete me daddy!
+                                                 Finished
                                                  </Label>
                                                  </FormGroup>
                                             </li>

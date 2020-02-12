@@ -16,6 +16,7 @@ import Dashboard from "./pages/dashboard";
 import BatchShow from "./pages/batchshow";
 import CreateNewBatch from "./pages/createnewbatch";
 import UpdateBatch from './pages/batchUpdate';
+import { getBatches, getTasks } from './apiCalls.js';
 
 
 class MainApp extends React.Component {
@@ -27,86 +28,25 @@ class MainApp extends React.Component {
         }
     }
 
-    getBatches = () => {
-        fetch('/batches',
-            {method: "GET"}
-        ).then((response)=> {
-            if(response.ok){
-                return(response.json())
-            }
-        })
-        .then((batches)=> {
-            this.setState({batches: batches})
-        })
-    }
-
-    createBatch = (batch)=> {
-         fetch('/batches/' , {
-            body: JSON.stringify(batch),
-            headers: {
-              'Content-Type': 'application/json'
-            },
-            method: "POST"
-          })
-          .then((response) => {
-              if(response.ok){
-                  return this.getBatches()
-              }
-          })
-      }
-
-    updateBatch = (batch)=> {
-        fetch('/batches/' + batch.id, {
-            method: "PUT",
-            headers: {
-                    'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(batch),
-            })
-            .then(resp =>  console.log(resp))
-            // .then((response) => {
-            //     if(response.ok){
-            //         return this.getBatches()
-            //     }
-            // })
-        }
-
-
-        //reload i think thats done and add react router redirect
-    deleteBatch = (batch) => {
-        console.log(batch);
-        fetch('/batches/' + batch.id, {
-            body: JSON.stringify(batch),
-            headers: {
-                'Content-Type': 'batch/json'
-            },
-            method: "DELETE"
-        })
-        .then((response) => {
-            this.getBatches()
-        })
-    //     .catch(error => {
-    //         console.log(error)
-    //         this.setState({errors: error})
-    //     })
-    }
-
-    getTasks = () => {
-        return fetch('/tasks',
-            {method: "GET"}
-        ).then((response)=> {
-            if(response.ok){
-                return(response.json())
-            }
-        })
-        .then((tasks)=> {
-            this.setState({tasks: tasks})
-        })
-    }
-
     componentDidMount = () => {
-        this.getBatches()
-        this.getTasks()
+        getBatches()
+            .then((response)=> {
+                if(response.ok){
+                    return(response.json())
+                }
+            })
+            .then((batches)=> {
+                this.setState({batches: batches})
+            })
+        getTasks()
+            .then((response)=> {
+                if(response.ok){
+                    return(response.json())
+                }
+            })
+            .then((tasks)=> {
+                this.setState({tasks: tasks})
+            })
     }
 
     render () {
@@ -129,11 +69,11 @@ class MainApp extends React.Component {
                     <Route path="/archive" render={(props) =><Archive {...props} batches={batches.filter(v => v.completed === true)}/>}/>
                     <Route path="/tasks" render={(props) =><Tasks {...props} tasks={tasks}/>}/>
                     <Route path="/active" render={(props) =><Active {...props} batches={batches.filter(v => v.completed === false)}/>}/>
-                    <Route exact path="/batches/:id" render={(props) =><BatchShow {...props} batches={batches} deleteBatch={this.deleteBatch} updateBatch={this.updateBatch} />}/>
+                    <Route exact path="/batches/:id" render={(props) =><BatchShow {...props} batches={batches}  />}/>
 
 
 
-                    <Route path="/newbatch" render={(props) =><CreateNewBatch onSubmit={this.createBatch}/>}/>
+                    <Route path="/newbatch" render={(props) =><CreateNewBatch/>}/>
 
 
                 </Switch>
@@ -144,8 +84,11 @@ class MainApp extends React.Component {
 }
 
 export default MainApp
+//CREATE BATCH onSubmit={this.createBatch}
+ //BATCH SHOW deleteBatch={this.deleteBatch} updateBatch={this.updateBatch}
 
- //
+
+
  // this is update method from code review videos and has mode: cors unlike our version
  //         updateBatch(id, batch) {
  //           return fetch('batches/' + id, {
