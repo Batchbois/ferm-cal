@@ -51,4 +51,8 @@ gem "devise", "~> 4.7"
 
 gem "react-rails", "~> 2.6"
 
+gem 'omniauth-google-oauth2'
+
+gem 'omniauth-rails_csrf_protection', '~> 0.1'
+
 # gem 'bootstrap', '~> 4.4.1'
