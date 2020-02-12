@@ -40,7 +40,6 @@ class BatchShow extends React.Component {
         deleteBatch(batch)
         .then((response) => {
             this.getBatchList()
-
         } )
         .catch(error => console.log(error))
     }

@@ -47,7 +47,7 @@ export const deleteBatch = (batch) => {
         },
         method: "DELETE"
     })
-    
+
 }
 
 export const getTasks = () => {
