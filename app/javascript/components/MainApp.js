@@ -9,12 +9,13 @@ import {
 import Header from './Header';
 import NotSignedInLanding from './pages/landingPage';
 import AboutUs from "./pages/aboutus";
+import Archive from "./pages/archive";
+import Active from "./pages/active";
+import Tasks from "./pages/tasks";
 import Dashboard from "./pages/dashboard";
 import BatchShow from "./pages/batchshow";
 import CreateNewBatch from "./pages/createnewbatch";
-import Calendar from "react-calendar";
-// import 'bootstrap/dist/js/bootstrap.min.js';
-// when this is included,page doesnt render
+import UpdateBatch from './pages/batchUpdate';
 
 
 class MainApp extends React.Component {
@@ -27,7 +28,7 @@ class MainApp extends React.Component {
     }
 
     getBatches = () => {
-        return fetch('/batches',
+        fetch('/batches',
             {method: "GET"}
         ).then((response)=> {
             if(response.ok){
@@ -40,12 +41,12 @@ class MainApp extends React.Component {
     }
 
     createBatch = (batch)=> {
-          return fetch('http://localhost:3000/batches/' , {
-              body: JSON.stringify(batch),
-              headers: {
-                  'Content-Type': 'application/json'
-              },
-              method: "POST"
+         fetch('/batches/' , {
+            body: JSON.stringify(batch),
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            method: "POST"
           })
           .then((response) => {
               if(response.ok){
@@ -54,18 +55,35 @@ class MainApp extends React.Component {
           })
       }
 
+    updateBatch = (batch)=> {
+        fetch('/batches/' + batch.id, {
+            method: "PUT",
+            headers: {
+                    'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(batch),
+            })
+            .then(resp =>  console.log(resp))
+            // .then((response) => {
+            //     if(response.ok){
+            //         return this.getBatches()
+            //     }
+            // })
+        }
+
+
+        //reload i think thats done and add react router redirect
     deleteBatch = (batch) => {
         console.log(batch);
-        return fetch('/batches/' + batch.id, {
+        fetch('/batches/' + batch.id, {
             body: JSON.stringify(batch),
             headers: {
                 'Content-Type': 'batch/json'
             },
             method: "DELETE"
         })
-        //currently having the delete response just be the same page so that we can read the error msg
         .then((response) => {
-            window.location.href = "/";
+            this.getBatches()
         })
     //     .catch(error => {
     //         console.log(error)
@@ -73,11 +91,8 @@ class MainApp extends React.Component {
     //     })
     }
 
-
-
-
     getTasks = () => {
-        return fetch('http://localhost:3000/tasks',
+        return fetch('/tasks',
             {method: "GET"}
         ).then((response)=> {
             if(response.ok){
@@ -96,8 +111,9 @@ class MainApp extends React.Component {
 
     render () {
         const { signed_in } = this.props
-        const { batches } = this.state
+        const { batches, tasks } = this.state
         return (
+        <div>
           <Router>
             <Header appProps={this.props}/>
                 <Switch>
@@ -110,9 +126,10 @@ class MainApp extends React.Component {
                     }}/>
                     <Route path="/aboutus" component={AboutUs} />
                     <Route path="/dashboard" component={Dashboard}/>
-
-
-                    <Route exact path="/batches/:id" render={(props) =><BatchShow {...props} batches={batches} deleteBatch={this.deleteBatch}/>}/>
+                    <Route path="/archive" render={(props) =><Archive {...props} batches={batches.filter(v => v.completed === true)}/>}/>
+                    <Route path="/tasks" render={(props) =><Tasks {...props} tasks={tasks}/>}/>
+                    <Route path="/active" render={(props) =><Active {...props} batches={batches.filter(v => v.completed === false)}/>}/>
+                    <Route exact path="/batches/:id" render={(props) =><BatchShow {...props} batches={batches} deleteBatch={this.deleteBatch} updateBatch={this.updateBatch} />}/>
 
 
 
@@ -121,10 +138,26 @@ class MainApp extends React.Component {
 
                 </Switch>
           </Router>
+          </div>
     );
   }
 }
 
 export default MainApp
+
+ //
+ // this is update method from code review videos and has mode: cors unlike our version
+ //         updateBatch(id, batch) {
+ //           return fetch('batches/' + id, {
+ //              method: 'PATCH',
+ //              mode: 'CORS',
+ //              body: JSON.stringify(batch),
+ //              headers: {
+ //                'Content-Type': 'application/json'
+ //              }
+ //               }).then(res => {
+ //                   return res;
+ //               }).catch(err => err);
+ //           }
 
 // <Route exact path="/batches" render={(props) =><Batches batches={this.state.batches} />} />

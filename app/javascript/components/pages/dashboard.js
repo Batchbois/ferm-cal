@@ -1,5 +1,3 @@
-//renders when user = signed in
-
 import React from 'react';
 import {
     Link
@@ -12,24 +10,35 @@ import {
     Card,
     CardTitle,
     CardBody,
-    CardSubtitle
+    CardSubtitle,
+    FormGroup,
+    Input,
+    Label
 } from 'reactstrap';
 
 
 const Dashboard = (props) => {
     let { batches, tasks } = props
+    const taskSize = {"maxHeight": "500px", "overflowY": "scroll"}
+    const batchSize = {"maxHeight": "450px", "overflowY": "scroll"}
     return (
-        <Container>
+        <Container >
             <Row>
                 <Col sm ="6">
-                    <Card className="card text-warning bg-warning mb-3" id= "tasks upcoming">
+                    <Card className="card text-warning bg-warning mb-3" >
                         <CardBody>
                             <CardTitle className="card-title text-white"><h2>Upcoming Tasks</h2></CardTitle>
-                                <ul className="list-group list-group-flush">
+                                <ul className="list-group list-group-flush" id= "tasks-upcoming" style={taskSize}>
                                     {tasks.map((task,index)=> {
                                         return(
-                                            <li key={index} className="list-group-item">
-                                                <h4>{task.date}: {task.description}</h4>
+                                            <li key={index} className="list-group-item" id="task-items">
+                                                <h6>{task.due}: {task.title}</h6>
+                                                <FormGroup check>
+                                                 <Label check>
+                                                  <Input type="checkbox" />{' '}
+                                                 Complete me daddy!
+                                                 </Label>
+                                                 </FormGroup>
                                             </li>
                                         )
                                     })}
@@ -42,10 +51,10 @@ const Dashboard = (props) => {
                     <Card className="card text-info bg-info mb-3" id= "batches">
                         <CardBody>
                             <CardTitle className="card-title text-white"><h2>Batches</h2></CardTitle>
-                                <ul className="list-group list-group-flush">
+                                <ul className="list-group list-group-flush" style={batchSize}>
                                     {batches.map((batch,index)=> {
                                         return(
-                                            <li key={index} className="list-group-item">
+                                            <li key={index} id="batch-items" className="list-group-item">
                                                 <Link to={`/batches/${batch.id}`} style={{ textDecoration: 'none' }}>
                                                     <h4>{batch.name} </h4>
                                                 </Link>

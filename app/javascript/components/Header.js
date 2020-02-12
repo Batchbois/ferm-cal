@@ -34,19 +34,19 @@ const Header = (props) => {
               <Collapse isOpen={isOpen} navbar>
                 <Nav className="mr-auto" navbar>
                   <NavItem>
-                    <Link className="nav-link" to="/aboutus/">About us!</Link>
-                  </NavItem>
-                  <NavItem>
                     {signed_in && <Link className="nav-link" to= "/tasks">Tasks</Link>}
                   </NavItem>
                   <NavItem>
                     {signed_in && <Link className="nav-link" to="/active">Active</Link>}
                   </NavItem>
                   <NavItem>
-                    {signed_in && <Link className="nav-link" to="/achive">Archive</Link>}
+                    {signed_in && <Link className="nav-link" to="/archive">Archive</Link>}
                   </NavItem>
                   <NavItem>
                     {signed_in && <Link className="nav-link" to="/newbatch">New Batch!</Link>}
+                  </NavItem>
+                  <NavItem>
+                  <Link className="nav-link" to="/aboutus/">About us!</Link>
                   </NavItem>
                   <NavItem>
                     {signed_in && <NavLink className="nav-link" href={sign_out_route}>Sign Out</NavLink>}

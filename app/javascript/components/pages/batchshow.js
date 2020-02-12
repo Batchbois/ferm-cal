@@ -13,7 +13,7 @@ import {
     Button
 } from 'reactstrap'
 import { Link } from "react-router-dom";
-import Delete from 'images/delete.svg'
+
 
 // const BatchShow = (props) => {
 class BatchShow extends React.Component {
@@ -39,7 +39,7 @@ class BatchShow extends React.Component {
                     </Card>
                     <Row>
                         <Link to="/newbatch"  style={{ textDecoration: 'none' }}>
-                            <Button type="button" className="btn btn-secondary btn-lg">Edit</Button>
+                            <Button type="button" className="btn btn-secondary btn-lg" onClick={() => {this.props.updateBatch(batch)}}>Edit</Button>
                         </Link>
                         <Link to="/newbatch"  style={{ textDecoration: 'none' }}>
                             <Button type="button" className="btn btn-secondary btn-lg" onClick={() => {this.props.deleteBatch(batch)}}>Delete</Button>
