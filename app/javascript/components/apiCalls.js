@@ -5,6 +5,12 @@ export const getBatches = () => {
     )
 }
 
+export const getTasks = () => {
+    return fetch('/tasks',
+        {method: "GET"}
+    )
+}
+
 export const createBatch = (batch)=> {
      return fetch('/batches/' , {
         body: JSON.stringify(batch),
@@ -37,10 +43,4 @@ export const deleteBatch = (batch) => {
         method: "DELETE"
     })
 
-}
-
-export const getTasks = () => {
-    return fetch('/tasks',
-        {method: "GET"}
-    )
 }

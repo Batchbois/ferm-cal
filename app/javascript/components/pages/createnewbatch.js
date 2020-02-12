@@ -36,7 +36,7 @@ class CreateNewBatch extends React.Component {
                 return this.getBatchList()
             }
         })
-        .then(()=> {
+        .then(() => {
             this.setState({success:true})
         })
         .catch(error => console.log(error))
@@ -88,7 +88,7 @@ render() {
                         <Button onClick={() => this.createNewBatch(this.state.form)} type="submit">Submit</Button>
                     </Form>
                     {this.state.success &&
-                        <Redirect to="/" />}
+                        <Redirect to="/"/>}
 
                 </Col>
                 <Col sm="5" lg="5">
@@ -101,26 +101,3 @@ render() {
 }
 }
 export default CreateNewBatch;
-
-//calendar funx
-// onChange = date => {
-//     this.setState({ date })
-// }
-//calender return
-// <Row>
-//     <h4>Select the Batch's Birthday!</h4>
-// </Row>
-// <Row>
-// <Calendar onChange= {this.onChange} value={this.state.date}/>
-// </Row>
-
-//batch notes
-// <FormGroup>
-//     <Label for="notes">Notes:</Label>
-//     <Input type="textarea" name="text" id="exampleText" placeholder="Notes about ingredients, temperature, quantity, etc."/>
-// </FormGroup>
-
-// <FormGroup>
-//     <Label for="start_date">Birthday</Label>
-//     <Input type="text" name="start_date" id="example_date" placeholder="Today's date" />
-// </FormGroup>
