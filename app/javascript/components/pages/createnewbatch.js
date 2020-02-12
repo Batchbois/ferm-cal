@@ -11,6 +11,7 @@ import {
     Container
 } from 'reactstrap';
 import { Redirect } from "react-router-dom"
+import { createBatch, getBatches} from '../apiCalls.js';
 import Bug from 'images/bugs.jpg'
 
 class CreateNewBatch extends React.Component {
@@ -27,12 +28,22 @@ class CreateNewBatch extends React.Component {
         }
     }
 
-    handleSubmit = () => {
-        console.log(this.state.success)
-        this.props.onSubmit(this.state.form)
+    createNewBatch = (batch) => {
+        createBatch(batch)
+        .then((response) => {
+            console.log(response);
+            if(response.ok){
+                return this.getBatchList()
+            }
+        })
         .then(()=> {
             this.setState({success:true})
         })
+        .catch(error => console.log(error))
+    }
+
+    getBatchList = (batches) => {
+        getBatches()
     }
 
     handleChange = (event) => {
@@ -74,7 +85,7 @@ render() {
                             <Label for="description">Description:</Label>
                             <Input onChange={this.handleChange} value={description}  type="textarea" name="description" id="description" placeholder="Notes about ingredients, temperature, quantity, etc."/>
                         </FormGroup>
-                        <Button onClick= {this.handleSubmit} type="submit">Submit</Button>
+                        <Button onClick={() => this.createNewBatch(this.state.form)} type="submit">Submit</Button>
                     </Form>
                     {this.state.success &&
                         <Redirect to="/" />}
