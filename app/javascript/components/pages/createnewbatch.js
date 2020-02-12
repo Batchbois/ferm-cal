@@ -10,15 +10,14 @@ import {
     Row,
     Container
 } from 'reactstrap';
+import { Redirect } from "react-router-dom"
 import Bug from 'images/bugs.jpg'
-// import Calendar from "react-calendar";
 
 class CreateNewBatch extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            // success: false,
-            // date: new Date(),
+            success: false,
             form: {
                 name: '',
                 ferment: 'beer',
@@ -29,10 +28,11 @@ class CreateNewBatch extends React.Component {
     }
 
     handleSubmit = () => {
+        console.log(this.state.success)
         this.props.onSubmit(this.state.form)
-        // .then(()=> {
-        //     this.setState({success:true})
-        // })
+        .then(()=> {
+            this.setState({success:true})
+        })
     }
 
     handleChange = (event) => {
@@ -43,6 +43,8 @@ class CreateNewBatch extends React.Component {
 
 render() {
     let { name, ferment, start_date, description } = this.state.form
+
+
   return (
     <div>
         <Container>
@@ -74,7 +76,9 @@ render() {
                         </FormGroup>
                         <Button onClick= {this.handleSubmit} type="submit">Submit</Button>
                     </Form>
-                    {/* this.state.success && <Redirect to="/batches" /> */}
+                    {this.state.success &&
+                        <Redirect to="/" />}
+
                 </Col>
                 <Col sm="5" lg="5">
                     <img src={Bug} />

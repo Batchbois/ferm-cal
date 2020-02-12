@@ -13,7 +13,7 @@ import {
     Button
 } from 'reactstrap'
 import { Link } from "react-router-dom";
-import Delete from 'images/delete.svg'
+
 
 // const BatchShow = (props) => {
 class BatchShow extends React.Component {

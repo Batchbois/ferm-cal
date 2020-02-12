@@ -20,6 +20,16 @@
   },
   "version": "0.1.0",
   "devDependencies": {
+    "enzyme": "^3.11.0",
+    "enzyme-adapter-react-16": "^1.15.2",
+    "identity-obj-proxy": "^3.0.0",
+    "jest": "^25.1.0",
     "webpack-dev-server": "^3.10.2"
+  },
+  "jest": {
+    "rootDir": "app/javascript",
+    "moduleNameMapper": {
+      "\\.(jpg|png)$": "identity-obj-proxy"
+    }
   }
 }

@@ -16,12 +16,12 @@ const UpdateBatch = () => {
 
     return(
         <div>
-            <Form onSubmit={this.handleSubmit}
-                name={state.batch.name}
-                ferment={state.batch.ferment}
-                description={state.batch.description}
-                start_date={state.batch.start_date}>
-            </Form>
+        <Form onSubmit={this.handleSubmit}
+        name={state.batch.name}
+        ferment={state.batch.ferment}
+        description={state.batch.description}
+        start_date={state.batch.start_date}>
+        </Form>
         </div>
 
     )

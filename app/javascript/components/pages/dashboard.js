@@ -1,5 +1,3 @@
-//renders when user = signed in
-
 import React from 'react';
 import {
     Link
@@ -12,7 +10,10 @@ import {
     Card,
     CardTitle,
     CardBody,
-    CardSubtitle
+    CardSubtitle,
+    FormGroup,
+    Input,
+    Label
 } from 'reactstrap';
 
 
@@ -30,8 +31,14 @@ const Dashboard = (props) => {
                                 <ul className="list-group list-group-flush" id= "tasks-upcoming" style={taskSize}>
                                     {tasks.map((task,index)=> {
                                         return(
-                                            <li key={index} className="list-group-item">
-                                                <h6>{task.due}: {task.description}</h6>
+                                            <li key={index} className="list-group-item" id="task-items">
+                                                <h6>{task.due}: {task.title}</h6>
+                                                <FormGroup check>
+                                                 <Label check>
+                                                  <Input type="checkbox" />{' '}
+                                                 Complete me daddy!
+                                                 </Label>
+                                                 </FormGroup>
                                             </li>
                                         )
                                     })}
@@ -47,7 +54,7 @@ const Dashboard = (props) => {
                                 <ul className="list-group list-group-flush" style={batchSize}>
                                     {batches.map((batch,index)=> {
                                         return(
-                                            <li key={index} className="list-group-item">
+                                            <li key={index} id="batch-items" className="list-group-item">
                                                 <Link to={`/batches/${batch.id}`} style={{ textDecoration: 'none' }}>
                                                     <h4>{batch.name} </h4>
                                                 </Link>

@@ -16,9 +16,6 @@ import Dashboard from "./pages/dashboard";
 import BatchShow from "./pages/batchshow";
 import CreateNewBatch from "./pages/createnewbatch";
 import UpdateBatch from './pages/batchUpdate';
-// import Calendar from "react-calendar";
-// import 'bootstrap/dist/js/bootstrap.min.js';
-// when this is included,page doesnt render
 
 
 class MainApp extends React.Component {
@@ -44,7 +41,7 @@ class MainApp extends React.Component {
     }
 
     createBatch = (batch)=> {
-         fetch('http://localhost:3000/batches/' , {
+         fetch('/batches/' , {
             body: JSON.stringify(batch),
             headers: {
               'Content-Type': 'application/json'
@@ -74,6 +71,8 @@ class MainApp extends React.Component {
             // })
         }
 
+
+        //reload i think thats done and add react router redirect
     deleteBatch = (batch) => {
         console.log(batch);
         fetch('/batches/' + batch.id, {
@@ -84,7 +83,7 @@ class MainApp extends React.Component {
             method: "DELETE"
         })
         .then((response) => {
-            window.location.href = "/";
+            this.getBatches()
         })
     //     .catch(error => {
     //         console.log(error)
@@ -93,7 +92,7 @@ class MainApp extends React.Component {
     }
 
     getTasks = () => {
-        return fetch('http://localhost:3000/tasks',
+        return fetch('/tasks',
             {method: "GET"}
         ).then((response)=> {
             if(response.ok){
@@ -114,6 +113,7 @@ class MainApp extends React.Component {
         const { signed_in } = this.props
         const { batches, tasks } = this.state
         return (
+        <div>
           <Router>
             <Header appProps={this.props}/>
                 <Switch>
@@ -126,9 +126,9 @@ class MainApp extends React.Component {
                     }}/>
                     <Route path="/aboutus" component={AboutUs} />
                     <Route path="/dashboard" component={Dashboard}/>
-                    <Route path="/archive" render={(props) =><Archive {...props} batches={batches}/>}/>
+                    <Route path="/archive" render={(props) =><Archive {...props} batches={batches.filter(v => v.completed === true)}/>}/>
                     <Route path="/tasks" render={(props) =><Tasks {...props} tasks={tasks}/>}/>
-                    <Route path="/active" render={(props) =><Active {...props} batches={batches}/>}/>
+                    <Route path="/active" render={(props) =><Active {...props} batches={batches.filter(v => v.completed === false)}/>}/>
                     <Route exact path="/batches/:id" render={(props) =><BatchShow {...props} batches={batches} deleteBatch={this.deleteBatch} updateBatch={this.updateBatch} />}/>
 
 
@@ -138,6 +138,7 @@ class MainApp extends React.Component {
 
                 </Switch>
           </Router>
+          </div>
     );
   }
 }
