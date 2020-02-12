@@ -8,13 +8,12 @@ class User < ApplicationRecord
   has_many :batches
   has_many :tasks, through: :batches
 
-  validates_uniqueness_of :display_name, :email
+  validates_uniqueness_of :email
 
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
-      user.provider = auth.provider
-      user.uid = auth.uid
       user.email = auth.info.email
+      user.display_name = auth.info.nickname || auth.info.first_name
       user.token = auth.credentials.token
       user.expires = auth.credentials.expires
       user.expires_at = auth.credentials.expires_at
