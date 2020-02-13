@@ -48,7 +48,7 @@ export const deleteBatch = (batch) => {
 export const markTaskDone = (task) => {
     task.completed = true
     console.log(task)
-    fetch(`/tasks/${task.id}`, {
+    return fetch(`/tasks/${task.id}`, {
         method: "PUT",
         headers: {
             'Content-Type': 'application/json'

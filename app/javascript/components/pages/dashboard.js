@@ -31,10 +31,11 @@ const Dashboard = (props) => {
     }
 
     const markCompleted = (e) => {
-        markTaskDone(e.target.id)
+        let task = tasks.find(v => v.id === +e.target.id)
+        markTaskDone(task)
         .then((response) => {
             console.log(response)
-        })
+        }
     }
 
     return (
@@ -55,7 +56,7 @@ const Dashboard = (props) => {
                                                 <Col sm={4}>
                                                   <p>
                                                     Done?
-                                                    <img id={task}
+                                                    <img id={task.id}
                                                          className='checkmark'
                                                          align="right"
                                                          src={Checkmark}

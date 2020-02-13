@@ -49,27 +49,6 @@ class MainApp extends React.Component {
             })
     }
 
-    componentDidUpdate = () => {
-        getBatches()
-            .then((response) => {
-                if (response.ok) {
-                    return (response.json())
-                }
-            })
-            .then((batches) => {
-                this.setState({ batches: batches })
-            })
-        getTasks()
-            .then((response) => {
-                if (response.ok) {
-                    return (response.json())
-                }
-            })
-            .then((tasks) => {
-                this.setState({ tasks: tasks })
-            })
-    }
-
     render () {
         const { signed_in } = this.props
         const { batches, tasks } = this.state
