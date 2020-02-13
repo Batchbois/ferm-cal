@@ -1,5 +1,7 @@
-import { getBatches, getTasks } from '../components/apiCalls';
+import { getBatches, getTasks, createBatch } from '../components/apiCalls';
 
+
+//testing fetches in isolation
 describe('getBatches', ()  =>{
     let mockRespone = [
         {
@@ -33,7 +35,9 @@ describe('getBatches', ()  =>{
     //
     // });
 
+
 });
+
 
 describe('getTasks', ()  =>{
     let mockRespone = [
@@ -67,4 +71,39 @@ describe('getTasks', ()  =>{
     //
     // });
 
+});
+
+
+//testing our create fetch
+describe('createBatch', ()  =>{
+    let mockBatch = [
+        {
+            id: 1,
+            name: "Kimmychi",
+            start_date: "",
+            description: "yumyy yyummy woops i spelled that wrong",
+            tasks: ["ya", "ya", "ya"]
+        }
+    ];
+    beforeEach(() => {
+        window.fetch = jest.fn().mockImplementation(() => {
+          return Promise.resolve({
+            ok: true,
+            json: () => Promise.resolve(mockBatch)
+          });
+        });
+      });
+
+      it('should fetch with the correct arguments', () => {
+      const expected = [ '/batches/', {
+        method: 'POST',
+        body: JSON.stringify(mockBatch),
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      }]
+      createBatch(mockBatch);
+
+      expect(window.fetch).toHaveBeenCalledWith(...expected)
+    });
 });
