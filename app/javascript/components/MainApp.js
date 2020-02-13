@@ -49,6 +49,27 @@ class MainApp extends React.Component {
             })
     }
 
+    componentDidUpdate = () => {
+        getBatches()
+            .then((response) => {
+                if (response.ok) {
+                    return (response.json())
+                }
+            })
+            .then((batches) => {
+                this.setState({ batches: batches })
+            })
+        getTasks()
+            .then((response) => {
+                if (response.ok) {
+                    return (response.json())
+                }
+            })
+            .then((tasks) => {
+                this.setState({ tasks: tasks })
+            })
+    }
+
     render () {
         const { signed_in } = this.props
         const { batches, tasks } = this.state
@@ -65,7 +86,7 @@ class MainApp extends React.Component {
                         }
                     }}/>
                     <Route path="/aboutus" component={AboutUs} />
-                    <Route path="/dashboard" component={Dashboard}/>
+                    <Route path="/dashboard" render={() => <Dashboard mainDidUpdate={this.componentDidUpdate} />}/>
                     <Route path="/archive" render={(props) =><Archive {...props} batches={batches.filter(v => v.completed === true)}/>}/>
                     <Route path="/tasks" render={(props) =><Tasks {...props} tasks={tasks}/>}/>
                     <Route path="/active" render={(props) =><Active {...props} batches={batches.filter(v => v.completed === false)}/>}/>

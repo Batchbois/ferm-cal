@@ -29,6 +29,14 @@ const Dashboard = (props) => {
       pickle: Pickle,
       beer: Beer
     }
+
+    const markCompleted = (e) => {
+        markTaskDone(e.target.id)
+        .then((response) => {
+            console.log(response)
+        })
+    }
+
     return (
         <Container >
             <Row>
@@ -47,10 +55,11 @@ const Dashboard = (props) => {
                                                 <Col sm={4}>
                                                   <p>
                                                     Done?
-                                                    <img className='checkmark'
+                                                    <img id={task}
+                                                         className='checkmark'
                                                          align="right"
                                                          src={Checkmark}
-                                                         onClick={markTaskDone}
+                                                         onClick={markCompleted}
                                                     />
                                                   </p>
                                                 </Col>
