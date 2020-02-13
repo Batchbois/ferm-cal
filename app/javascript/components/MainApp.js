@@ -73,7 +73,7 @@ class MainApp extends React.Component {
 
 
 
-                    <Route path="/newbatch" render={(props) =><CreateNewBatch onSubmit={this.createBatch}/>}/>
+                    <Route path="/newbatch" render={(props) =><CreateNewBatch />}/>
 
 
                 </Switch>
@@ -84,9 +84,6 @@ class MainApp extends React.Component {
 }
 
 export default MainApp
-//CREATE BATCH onSubmit={this.createBatch}
- //BATCH SHOW deleteBatch={this.deleteBatch} updateBatch={this.updateBatch}
-
 
 
  // this is update method from code review videos and has mode: cors unlike our version

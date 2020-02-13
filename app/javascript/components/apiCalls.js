@@ -2,6 +2,13 @@
 export const getBatches = () => {
     return fetch('/batches',
         {method: "GET"}
+
+    )
+}
+
+export const getTasks = () => {
+    return fetch('/tasks',
+        {method: "GET"}
     )
 }
 
@@ -37,10 +44,4 @@ export const deleteBatch = (batch) => {
         method: "DELETE"
     })
 
-}
-
-export const getTasks = () => {
-    return fetch('/tasks',
-        {method: "GET"}
-    )
 }
