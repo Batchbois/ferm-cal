@@ -32,10 +32,9 @@ const Dashboard = (props) => {
 
     const markCompleted = (e) => {
         let task = tasks.find(v => v.id === +e.target.id)
+        task.completed = true
         markTaskDone(task)
-        .then((response) => {
-            console.log(response)
-        }
+        props.completeTask(task)
     }
 
     return (
