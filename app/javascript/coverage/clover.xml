@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<coverage generated="1581553078487" clover="3.2.0">
+  <project timestamp="1581553078488" name="All files">
+    <metrics statements="17" coveredstatements="17" conditionals="0" coveredconditionals="0" methods="8" coveredmethods="8" elements="25" coveredelements="25" complexity="0" loc="17" ncloc="17" packages="1" files="4" classes="4"/>
+    <file name="aboutus.js" path="/Users/learn/Desktop/BATCHBOIz/ferm-cal/app/javascript/components/pages/aboutus.js">
+      <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+      <line num="6" count="1" type="stmt"/>
+      <line num="7" count="1" type="stmt"/>
+    </file>
+    <file name="active.js" path="/Users/learn/Desktop/BATCHBOIz/ferm-cal/app/javascript/components/pages/active.js">
+      <metrics statements="4" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
+      <line num="10" count="1" type="stmt"/>
+      <line num="11" count="2" type="stmt"/>
+      <line num="12" count="2" type="stmt"/>
+      <line num="19" count="6" type="stmt"/>
+    </file>
+    <file name="archive.js" path="/Users/learn/Desktop/BATCHBOIz/ferm-cal/app/javascript/components/pages/archive.js">
+      <metrics statements="4" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
+      <line num="10" count="1" type="stmt"/>
+      <line num="11" count="2" type="stmt"/>
+      <line num="12" count="2" type="stmt"/>
+      <line num="19" count="6" type="stmt"/>
+    </file>
+    <file name="dashboard.js" path="/Users/learn/Desktop/BATCHBOIz/ferm-cal/app/javascript/components/pages/dashboard.js">
+      <metrics statements="7" coveredstatements="7" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="3"/>
+      <line num="20" count="1" type="stmt"/>
+      <line num="21" count="3" type="stmt"/>
+      <line num="22" count="3" type="stmt"/>
+      <line num="23" count="3" type="stmt"/>
+      <line num="24" count="3" type="stmt"/>
+      <line num="33" count="9" type="stmt"/>
+      <line num="56" count="9" type="stmt"/>
+    </file>
+  </project>
+</coverage>

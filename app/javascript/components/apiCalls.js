@@ -2,6 +2,7 @@
 export const getBatches = () => {
     return fetch('/batches',
         {method: "GET"}
+
     )
 }
 
