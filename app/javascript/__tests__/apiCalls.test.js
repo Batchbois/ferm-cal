@@ -34,3 +34,37 @@ describe('getBatches', ()  =>{
     // });
 
 });
+
+describe('getTasks', ()  =>{
+    let mockRespone = [
+        {
+            title: "stuff",
+            due: "4949",
+            description: "explain doing stuff"
+        }
+    ];
+    beforeEach(() => {
+        window.fetch = jest.fn().mockImplementation(() => {
+          return Promise.resolve({
+            ok: true,
+            json: () => Promise.resolve(mockResponse)
+          });
+        });
+      });
+
+    it("should call fetch with the correct url", () => {
+        getTasks()
+
+    expect(window.fetch).toHaveBeenCalledWith('/tasks', {"method": "GET"});
+    })
+
+    it('should return an array of batches (HAPPY)', () => {
+        getBatches()
+           .then(results => expect(results).toEqual(mockResponse));
+         });
+
+    // it('should return an error (SAD)', () => {
+    //
+    // });
+
+});

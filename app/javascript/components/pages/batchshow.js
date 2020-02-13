@@ -19,7 +19,8 @@ class BatchShow extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            batch: []
+            batch: [],
+            success: false
         }
     }
     componentDidMount = () => {
@@ -40,9 +41,10 @@ class BatchShow extends React.Component {
         deleteBatch(batch)
         .then((response) => {
             this.getBatchList()
-        } )
+        })
+        this.setState({success: true})
         .catch(error => console.log(error))
-    }
+    } 
 
     render () {
         const id  = this.props.match.params.id
