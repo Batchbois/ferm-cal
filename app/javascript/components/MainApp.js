@@ -22,7 +22,7 @@ import { getBatches, getTasks } from './apiCalls.js';
 class MainApp extends React.Component {
     constructor(props) {
         super(props)
-        this.state={
+        this.state = {
             batches: [],
             tasks: []
         }
@@ -49,6 +49,12 @@ class MainApp extends React.Component {
             })
     }
 
+    completeTask = (t) => {
+        let { tasks } = this.state
+        tasks[tasks.findIndex(v => v.id === t.id)].complete = true
+        this.setState({tasks: tasks})
+    }
+
     render () {
         const { signed_in } = this.props
         const { batches, tasks } = this.state
@@ -59,13 +65,13 @@ class MainApp extends React.Component {
                 <Switch>
                     <Route exact path= "/" render={() => {
                         if (signed_in) {
-                            return <Dashboard batches={this.state.batches} tasks={this.state.tasks} />
+                            return <Dashboard batches={this.state.batches} tasks={this.state.tasks} completeTask={this.completeTask} />
                         } else {
                             return <NotSignedInLanding/>
                         }
                     }}/>
                     <Route path="/aboutus" component={AboutUs} />
-                    <Route path="/dashboard" component={Dashboard}/>
+                    <Route path="/dashboard" render={() => <Dashboard /> } />
                     <Route path="/archive" render={(props) =><Archive {...props} batches={batches.filter(v => v.completed === true)}/>}/>
                     <Route path="/tasks" render={(props) =><Tasks {...props} tasks={tasks}/>}/>
                     <Route path="/active" render={(props) =><Active {...props} batches={batches.filter(v => v.completed === false)}/>}/>
@@ -78,7 +84,7 @@ class MainApp extends React.Component {
 
                 </Switch>
           </Router>
-          </div>
+        </div>
     );
   }
 }
