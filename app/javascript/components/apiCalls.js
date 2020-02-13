@@ -45,3 +45,7 @@ export const deleteBatch = (batch) => {
     })
 
 }
+
+export const markTaskDone = () => {
+  console.log("this is called");
+}
