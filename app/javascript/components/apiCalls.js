@@ -54,3 +54,14 @@ export const markTaskDone = (task) => {
         body: JSON.stringify(task)
     })
 }
+
+export const markBatchDone = (batch) => {
+    batch.completed = true
+    return fetch(`/batches/${batch.id}`, {
+        method: "PUT",
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(batch)
+    })
+}
