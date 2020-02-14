@@ -31,8 +31,9 @@ const Tasks = (props) => {
                                     <li key={index} className="list-group-item">
                                         <Row>
                                         <Col sm={8}>
-                                            <h5>Due: {new Date(task.due).toDateString()} {task.title}</h5>
-                                            <h5>Belongs to {batches.find(b => b.id === task.batch_id).name}</h5>
+                                            <h5>Due: {new Date(task.due).toDateString()}</h5>
+                                            <h5>{task.title}</h5>
+                                            <h5>Batch: <em>{batches.find(b => b.id === task.batch_id).name}</em></h5>
                                             <h6>{task.description}</h6> 
                                         </Col>
                                         <Col sm={4}>
