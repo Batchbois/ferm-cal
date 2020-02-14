@@ -4,17 +4,14 @@ import {
     CardTitle,
     CardSubtitle,
     CardBody,
-    CardText,
-    Container,
-    Navbar,
-    NavbarText,
     Col,
     Row,
     Button
 } from 'reactstrap'
 import { Link } from "react-router-dom";
-import { getBatches, deleteBatch, updateBatch } from '../apiCalls.js';
-
+import { getBatches, deleteBatch, markBatchDone, markTaskDone } from '../apiCalls.js';
+import Checkmark from 'images/checkmark.png'
+import '../../../assets/stylesheets/checkmark.css'
 import Pickle from 'images/pickle.png'
 import Beer from 'images/beer-bottle.png'
 
@@ -22,12 +19,16 @@ class BatchShow extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            batch: [],
+            batch: {
+                tasks: []
+            },
             success: false
         }
     }
+
     componentDidMount = () => {
-        this.getBatchItem()
+        let theBatch = this.props.batches.find(b => b.id === +this.props.match.params.id)
+        this.getBatchItem(theBatch)
     }
 
 
@@ -35,12 +36,11 @@ class BatchShow extends React.Component {
         this.setState({batch: batch})
     }
 
-    getBatchList = (batches) => {
+    getBatchList = () => {
         getBatches()
     }
 
     deletedBatch = (batch) => {
-        console.log("delete");
         deleteBatch(batch)
         .then((response) => {
             this.getBatchList()
@@ -49,9 +49,21 @@ class BatchShow extends React.Component {
         .catch(error => console.log(error))
     }
 
+    markBatchCompleted = () => {
+        let { batch } = this.state
+        markBatchDone(batch)
+        batch.tasks.forEach( t => t.completed = true )
+        this.props.completeBatch(batch)
+    }
+
+    markTaskCompleted = (e) => {
+        let task = this.state.batch.tasks.find(v => v.id === +e.target.id)
+        markTaskDone(task)
+        this.props.completeTask(task)
+    }
+
     render () {
-        const id  = this.props.match.params.id
-        const batch = this.props.batches.find((batch) => batch.id == parseInt(id))
+        const { batch } = this.state
 
         const fermentIcons = {
           pickle: Pickle,
@@ -76,9 +88,25 @@ class BatchShow extends React.Component {
                                 <img src={fermentIcons[batch.ferment]} height='100px' />
                               </Col>
                           </Row>
-                            <CardText style={{color: "white"}}><h5>
-                              {batch.description}</h5>
-                            </CardText>
+                            <ul className="list-group list-group-flush" style={{marginBottom: '1%'}}>
+                            <li className="list-group-item">
+                                <Row>
+                                    <Col sm={8}>
+                                        <h6>{batch.description}</h6>
+                                    </Col>
+                                    <Col sm={4}>
+                                    {   batch.completed 
+                                        ? <h6>Completed!</h6>
+                                        : <img id={batch.id}
+                                        className='checkmark'
+                                        align="right"
+                                        src={Checkmark}
+                                        onClick={this.markBatchCompleted}
+                                        />}
+                                    </Col>
+                                </Row>
+                            
+                            </li></ul>
                             <Row>
                               <Col>
                                 <Link to="/newbatch"  style={{ textDecoration: 'none' }}>
@@ -99,8 +127,22 @@ class BatchShow extends React.Component {
                                     {batch.tasks.map((task,index)=> {
                                         return(
                                             <li key={index} className="list-group-item">
-                                                <h5> Due: {new Date(task.due).toDateString()}</h5>
-                                                <h5> {task.title}</h5>
+                                                <Row>
+                                                    <Col sm={8}>
+                                                        <h5>Due: {new Date(task.due).toDateString()}</h5>
+                                                        <h5>{task.title}</h5>
+                                                    </Col>
+                                                    <Col sm={4}>
+                                                        {task.completed
+                                                            ? <h6>Completed!</h6>
+                                                            : <img id={task.id}
+                                                                className='checkmark'
+                                                                align="right"
+                                                                src={Checkmark}
+                                                                onClick={this.markTaskCompleted}
+                                                            />}
+                                                    </Col>
+                                                </Row>
                                                 <h6> {task.description}</h6>
                                             </li>
                                         )
