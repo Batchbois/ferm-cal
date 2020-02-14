@@ -5,6 +5,7 @@ import {
     Switch,
     Link
 } from 'react-router-dom';
+import { Container } from 'reactstrap'
 
 import Header from './Header';
 import NotSignedInLanding from './pages/landingPage';
@@ -62,6 +63,7 @@ class MainApp extends React.Component {
         <div>
           <Router>
             <Header appProps={this.props}/>
+            <Container style={{marginTop: '1%'}}>
                 <Switch>
                     <Route exact path= "/" render={() => {
                         if (signed_in) {
@@ -83,6 +85,7 @@ class MainApp extends React.Component {
 
 
                 </Switch>
+            </Container>
           </Router>
         </div>
     );

@@ -38,7 +38,6 @@ const Dashboard = (props) => {
     }
 
     return (
-        <Container >
             <Row>
                 <Col sm ="6">
                     <Card className="card text-warning bg-warning mb-3" >
@@ -105,7 +104,6 @@ const Dashboard = (props) => {
                 </Row>
             </Col>
         </Row>
-        </Container>
     )
 }
 export default Dashboard;
