@@ -56,6 +56,15 @@ class MainApp extends React.Component {
         this.setState({tasks: tasks})
     }
 
+    completeBatch = (b) => {
+        let { batches } = this.state
+        batches[batches.findIndex(v => v.id === b.id)].complete = true
+        this.setState({batches: batches})
+        b.tasks.forEach(task => {
+            this.completeTask(task)
+        });
+    }
+
     render () {
         const { signed_in } = this.props
         const { batches, tasks } = this.state
@@ -73,14 +82,14 @@ class MainApp extends React.Component {
                         }
                     }}/>
                     <Route path="/aboutus" component={AboutUs} />
-                    <Route path="/dashboard" render={() => <Dashboard /> } />
                     <Route path="/archive" render={(props) =><Archive {...props} batches={batches.filter(v => v.completed === true)}/>}/>
                     <Route path="/tasks" render={(props) =><Tasks {...props} tasks={tasks}/>}/>
                     <Route path="/active" render={(props) =><Active {...props} batches={batches.filter(v => v.completed === false)}/>}/>
-                    <Route exact path="/batches/:id" render={(props) =><BatchShow {...props} batches={batches}  />}/>
-
-
-
+                    <Route exact path="/batches/:id" render={(props) => <BatchShow {...props} 
+                                                                            batches={batches} 
+                                                                            completeTask={this.completeTask}
+                                                                            completeBatch={this.completeBatch}
+                                                                        />}/>
                     <Route path="/newbatch" render={(props) =><CreateNewBatch />}/>
 
 

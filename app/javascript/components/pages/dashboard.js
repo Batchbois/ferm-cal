@@ -32,7 +32,6 @@ const Dashboard = (props) => {
 
     const markCompleted = (e) => {
         let task = tasks.find(v => v.id === +e.target.id)
-        task.completed = true
         markTaskDone(task)
         props.completeTask(task)
     }
@@ -52,15 +51,12 @@ const Dashboard = (props) => {
                                                   <h6>Due: {new Date(task.due).toDateString()}</h6>
                                                 </Col>
                                                 <Col sm={4}>
-                                                  <p>
-                                                    Done?
                                                     <img id={task.id}
                                                          className='checkmark'
                                                          align="right"
                                                          src={Checkmark}
                                                          onClick={markCompleted}
                                                     />
-                                                  </p>
                                                 </Col>
                                               </Row>
                                                 <h6>{task.title}</h6>
