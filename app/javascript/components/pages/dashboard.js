@@ -40,7 +40,7 @@ const Dashboard = (props) => {
     return (
             <Row>
                 <Col sm ="6">
-                    <Card className="card text-warning bg-warning mb-3" >
+                    <Card className="card text-secondary bg-secondary mb-3" >
                         <CardBody>
                             <CardTitle className="card-title text-white"><h2>Upcoming Tasks</h2></CardTitle>
                                 <ul className="list-group list-group-flush" id= "tasks-upcoming" style={taskSize}>
@@ -99,7 +99,7 @@ const Dashboard = (props) => {
                     </Card>
                 <Row>
                     <Col>
-                    <Link to="/newbatch"  style={{ textDecoration: 'none' }}> <Button type="button" className="btn btn-secondary btn-lg btn-block" >Create New Batch!</Button> </Link>
+                    <Link to="/newbatch"  style={{ textDecoration: 'none' }}> <Button type="button" className="btn btn-success btn-lg btn-block" >Create New Batch!</Button> </Link>
                     </Col>
                 </Row>
             </Col>
