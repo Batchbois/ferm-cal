@@ -50,8 +50,7 @@ const Dashboard = (props) => {
                                                     <img className='checkmark'
                                                          align="right"
                                                          src={Checkmark}
-                                                         onClick={markTaskDone}
-                                                    />
+                                                         onClick={markTaskDone}/>
                                                   </p>
                                                 </Col>
                                               </Row>
