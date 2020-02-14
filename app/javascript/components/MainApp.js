@@ -76,14 +76,18 @@ class MainApp extends React.Component {
                 <Switch>
                     <Route exact path= "/" render={() => {
                         if (signed_in) {
-                            return <Dashboard batches={this.state.batches} tasks={this.state.tasks} completeTask={this.completeTask} />
+                            return <Dashboard batches={batches} tasks={tasks} completeTask={this.completeTask} />
                         } else {
                             return <NotSignedInLanding/>
                         }
                     }}/>
                     <Route path="/aboutus" component={AboutUs} />
-                    <Route path="/archive" render={(props) =><Archive {...props} batches={batches.filter(v => v.completed === true)}/>}/>
-                    <Route path="/tasks" render={(props) =><Tasks {...props} tasks={tasks}/>}/>
+                    <Route path="/archive" render={() => <Archive batches={batches.filter(v => v.completed)}/>}/>
+                    <Route path="/tasks" render={() => <Tasks 
+                                                          tasks={tasks} 
+                                                          batches={batches}
+                                                          completeTask={this.completeTask}
+                                                        />}/>
                     <Route path="/active" render={(props) =><Active {...props} batches={batches.filter(v => v.completed === false)}/>}/>
                     <Route exact path="/batches/:id" render={(props) => <BatchShow {...props} 
                                                                             batches={batches} 

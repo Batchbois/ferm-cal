@@ -4,10 +4,6 @@ import {
     CardTitle,
     CardSubtitle,
     CardBody,
-    CardText,
-    Container,
-    Navbar,
-    NavbarText,
     Col,
     Row,
     Button
@@ -129,9 +125,8 @@ class BatchShow extends React.Component {
                             <CardTitle className="card-title text-white"><h2>Tasks</h2></CardTitle>
                                 <ul className="list-group list-group-flush">
                                     {batch.tasks.map((task,index)=> {
-                                        let contextColor = task.completed ? 'aquamarine' : 'whitesmoke'
                                         return(
-                                            <li key={index} className="list-group-item" style={{ backgroundColor: `${contextColor}` }}>
+                                            <li key={index} className="list-group-item">
                                                 <Row>
                                                     <Col sm={8}>
                                                         <h5>Due: {new Date(task.due).toDateString()}</h5>
