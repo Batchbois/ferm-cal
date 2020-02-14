@@ -18,7 +18,7 @@ import {
 import Checkmark from 'images/checkmark.png'
 import Pickle from 'images/pickle.png'
 import Beer from 'images/beer-bottle.png'
-import '../../../assets/stylesheets/checkmark.css'
+import 'images/minorstyling/checkmark.css'
 import { markTaskDone } from '../apiCalls'
 
 const Dashboard = (props) => {
