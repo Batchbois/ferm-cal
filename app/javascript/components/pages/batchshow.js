@@ -66,26 +66,23 @@ class BatchShow extends React.Component {
                     <Card className="card text-info bg-info mb-3">
                         <CardBody>
                           <Row>
-                              <Col>
+                              <Col sm= "8">
                                 <CardTitle className="card-title text-white"><h2>{batch.name}</h2></CardTitle>
-                                <CardSubtitle className="card-title text-white">Start Date: {batch.start_date}</CardSubtitle>
+                                <CardSubtitle className="card-title text-white">
+                                    <h5>born: {new Date(batch.start_date).toDateString()}</h5>
+                                </CardSubtitle>
                               </Col>
-                              <Col>
+                              <Col sm="2" >
                                 <img src={fermentIcons[batch.ferment]} height='100px' />
                               </Col>
                           </Row>
-                            <CardText style={{color: "white"}}>
-                              {batch.description}
+                            <CardText style={{color: "white"}}><h5>
+                              {batch.description}</h5>
                             </CardText>
                             <Row>
                               <Col>
                                 <Link to="/newbatch"  style={{ textDecoration: 'none' }}>
-                                  <Button type="button" className="btn btn-secondary btn-lg btn-center" onClick={() => {this.updateBatch(batch)}}>Edit</Button>
-                                </Link>
-                              </Col>
-                              <Col >
-                                <Link to="/newbatch"  style={{ textDecoration: 'none' }}>
-                                  <Button type="button" className="btn btn-secondary btn-lg" onClick={() => {this.deletedBatch(batch)}}>Delete</Button>
+                                  <Button type="button" className="btn btn-warning btn-lg" onClick={() => {this.deletedBatch(batch)}}>delete me</Button>
                                 </Link>
                               </Col>
                             </Row>
@@ -95,15 +92,16 @@ class BatchShow extends React.Component {
 
                 </Col>
                 <Col sm="6">
-                    <Card className="card text-warning bg-warning mb-3">
+                    <Card className="card text-secondary bg-secondary mb-3">
                         <CardBody>
                             <CardTitle className="card-title text-white"><h2>Tasks</h2></CardTitle>
                                 <ul className="list-group list-group-flush">
                                     {batch.tasks.map((task,index)=> {
                                         return(
                                             <li key={index} className="list-group-item">
-                                                <h4> Due: {new Date(task.due).toDateString()}: {task.title}</h4>
-
+                                                <h5> Due: {new Date(task.due).toDateString()}</h5>
+                                                <h5> {task.title}</h5>
+                                                <h6> {task.description}</h6>
                                             </li>
                                         )
                                     })}
@@ -133,3 +131,8 @@ export default BatchShow;
 //         )
 //     })}
 // </ul>
+
+//button to update batch
+// <Link to="/newbatch"  style={{ textDecoration: 'none' }}>
+//   <Button type="button" className="btn btn-secondary btn-lg btn-center" onClick={() => {this.updateBatch(batch)}}>Edit</Button>
+// </Link>
