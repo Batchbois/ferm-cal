@@ -52,15 +52,12 @@ const Dashboard = (props) => {
                                                   <h6>Due: {new Date(task.due).toDateString()}</h6>
                                                 </Col>
                                                 <Col sm={4}>
-                                                  <p>
-                                                    Done?
                                                     <img id={task.id}
                                                          className='checkmark'
                                                          align="right"
                                                          src={Checkmark}
                                                          onClick={markCompleted}
                                                     />
-                                                  </p>
                                                 </Col>
                                               </Row>
                                                 <h6>{task.title}</h6>
@@ -90,7 +87,7 @@ const Dashboard = (props) => {
                                                     <img src={fermentIcons[batch.ferment]} height='30px' />
                                                   </Col>
                                                 </Row>
-                                                <h6>{batch.ferment} Start: {batch.start_date}</h6>
+                                                <h6>{batch.ferment} start:  {new Date(batch.start_date).toDateString()}</h6>
                                             </li>
                                         )
                                     })}

@@ -17,8 +17,9 @@ const Tasks = (props) => {
                             {tasks.map((task,index)=> {
                                 return(
                                     <li key={index} className="list-group-item">
-                                        <h6>{task.due}: {task.title}</h6>
-                                        <p> {task.description} </p>
+                                        <h5>Due: {new Date(task.due).toDateString()}</h5>
+                                        <h5>{task.title}</h5>
+                                        <h6> {task.description} </h6>
                                     </li>
                                 )
                             })}
