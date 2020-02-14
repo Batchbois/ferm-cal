@@ -261,8 +261,8 @@ Devise.setup do |config|
   # up on your models and hooks.
   # config.omniauth :github, 'APP_ID', 'APP_SECRET', scope: 'user,public_repo'
   
-  client_id = Rails.application.credentials.dig(:omniauth, :google_oauth2_client_id)
-  client_secret = Rails.application.credentials.dig(:omniauth, :google_oauth2_secret)
+  client_id = Rails.application.credentials[Rails.env.to_sym].dig(:omniauth, :google_oauth2_client_id)
+  client_secret = Rails.application.credentials[Rails.env.to_sym].dig(:omniauth, :google_oauth2_secret)
   config.omniauth :google_oauth2, client_id, client_secret, scope: "userinfo.email, calendar", skip_jwt: true
 
   # ==> Warden configuration
