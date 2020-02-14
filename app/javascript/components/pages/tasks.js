@@ -17,7 +17,8 @@ const Tasks = (props) => {
                             {tasks.map((task,index)=> {
                                 return(
                                     <li key={index} className="list-group-item">
-                                        <h6>{task.due}: {task.description}</h6>
+                                        <h6>{task.due}: {task.title}</h6>
+                                        <p> {task.description} </p>
                                     </li>
                                 )
                             })}
