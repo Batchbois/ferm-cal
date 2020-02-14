@@ -2,7 +2,6 @@
 export const getBatches = () => {
     return fetch('/batches',
         {method: "GET"}
-
     )
 }
 
@@ -35,7 +34,6 @@ export const updateBatch = (batch)=> {
 
     //reload i think thats done and add react router redirect
 export const deleteBatch = (batch) => {
-    console.log(batch);
     return fetch('/batches/' + batch.id, {
         body: JSON.stringify(batch),
         headers: {
@@ -46,6 +44,13 @@ export const deleteBatch = (batch) => {
 
 }
 
-export const markTaskDone = () => {
-  console.log("this is called");
+export const markTaskDone = (task) => {
+    task.completed = true
+    return fetch(`/tasks/${task.id}`, {
+        method: "PUT",
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(task)
+    })
 }

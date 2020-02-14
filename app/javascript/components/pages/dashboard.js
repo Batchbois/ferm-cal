@@ -29,6 +29,14 @@ const Dashboard = (props) => {
       pickle: Pickle,
       beer: Beer
     }
+
+    const markCompleted = (e) => {
+        let task = tasks.find(v => v.id === +e.target.id)
+        task.completed = true
+        markTaskDone(task)
+        props.completeTask(task)
+    }
+
     return (
         <Container >
             <Row>
@@ -47,10 +55,12 @@ const Dashboard = (props) => {
                                                 <Col sm={4}>
                                                   <p>
                                                     Done?
-                                                    <img className='checkmark'
+                                                    <img id={task.id}
+                                                         className='checkmark'
                                                          align="right"
                                                          src={Checkmark}
-                                                         onClick={markTaskDone}/>
+                                                         onClick={markCompleted}
+                                                    />
                                                   </p>
                                                 </Col>
                                               </Row>
