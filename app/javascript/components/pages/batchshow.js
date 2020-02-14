@@ -129,11 +129,25 @@ class BatchShow extends React.Component {
                             <CardTitle className="card-title text-white"><h2>Tasks</h2></CardTitle>
                                 <ul className="list-group list-group-flush">
                                     {batch.tasks.map((task,index)=> {
-                                        let contextColor = task.completed ? 'lightgreen' : 'whitesmoke'
+                                        let contextColor = task.completed ? 'aquamarine' : 'whitesmoke'
                                         return(
-                                            <li key={index} className="list-group-item">
-                                                <h5> Due: {new Date(task.due).toDateString()}</h5>
-                                                <h5> {task.title}</h5>
+                                            <li key={index} className="list-group-item" style={{ backgroundColor: `${contextColor}` }}>
+                                                <Row>
+                                                    <Col sm={8}>
+                                                        <h5>Due: {new Date(task.due).toDateString()}</h5>
+                                                        <h5>{task.title}</h5>
+                                                    </Col>
+                                                    <Col sm={4}>
+                                                        {task.completed
+                                                            ? <h6>Completed!</h6>
+                                                            : <img id={task.id}
+                                                                className='checkmark'
+                                                                align="right"
+                                                                src={Checkmark}
+                                                                onClick={this.markTaskCompleted}
+                                                            />}
+                                                    </Col>
+                                                </Row>
                                                 <h6> {task.description}</h6>
                                             </li>
                                         )
@@ -153,23 +167,6 @@ class BatchShow extends React.Component {
 
 export default BatchShow;
 
-
-{/* <li id={task.id} key={index} className="list-group-item" style={{ backgroundColor: `${contextColor}` }}>
-    <Row>
-        <Col sm={8}>
-            <h4> Due: {new Date(task.due).toDateString()}: {task.title}</h4>
-        </Col>
-        <Col sm={4}>
-            {task.completed
-                ? <h6>Completed!</h6>
-                : <img id={task.id}
-                    className='checkmark'
-                    align="right"
-                    src={Checkmark}
-                    onClick={this.markTaskCompleted}
-                />}
-        </Col>
-    </Row> */}
 //adding notes soon
 // <ul className="list-group list-group-flush">
 //     {batch.notes.map((note,index)=> {
