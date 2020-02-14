@@ -63,7 +63,7 @@ class MainApp extends React.Component {
         <div>
           <Router>
             <Header appProps={this.props}/>
-            <Container>
+            <Container style={{marginTop: '1%'}}>
                 <Switch>
                     <Route exact path= "/" render={() => {
                         if (signed_in) {
