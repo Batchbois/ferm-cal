@@ -44,15 +44,16 @@ const Dashboard = (props) => {
                             <CardTitle className="card-title text-white"><h2>Upcoming Tasks</h2></CardTitle>
                                 <ul className="list-group list-group-flush" id= "tasks-upcoming" style={taskSize}>
                                     {tasks.filter(v => !v.complete).map((task,index)=> {
+
                                         return(
                                             <li key={index} className="list-group-item" id="task-items">
                                               <Row>
-                                                <Col sm={8}>
+                                                <Col sm="10">
                                                     <h5>Due: {new Date(task.due).toDateString()}</h5>
-                                                    <h5>{task.title}</h5>
-                                                    <h5>Batch: <em>{batches.find(b => b.id === task.batch_id).name}</em></h5>
+                                                    <h6>{task.title}</h6>
+                                                    <h6>{task.description}</h6>
                                                 </Col>
-                                                <Col sm={4}>
+                                                <Col sm="2">
                                                     <img id={task.id}
                                                          className='checkmark'
                                                          align="right"
@@ -104,3 +105,4 @@ const Dashboard = (props) => {
     )
 }
 export default Dashboard;
+// <h5>Batch: <em>{batches.find(b => b.id === task.batch_id).name}</em></h5>
