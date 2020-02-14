@@ -86,7 +86,7 @@ const Dashboard = (props) => {
                                                     <img src={fermentIcons[batch.ferment]} height='30px' />
                                                   </Col>
                                                 </Row>
-                                                <h6>{batch.ferment} Start: {batch.start_date}</h6>
+                                                <h6>{batch.ferment} start:  {new Date(batch.start_date).toDateString()}</h6>
                                             </li>
                                         )
                                     })}

@@ -82,11 +82,13 @@ class BatchShow extends React.Component {
                     <Card className="card text-info bg-info mb-3">
                         <CardBody>
                           <Row>
-                              <Col>
+                              <Col sm= "8">
                                 <CardTitle className="card-title text-white"><h2>{batch.name}</h2></CardTitle>
-                                <CardSubtitle className="card-title text-white">Start Date: {batch.start_date}</CardSubtitle>
+                                <CardSubtitle className="card-title text-white">
+                                    <h5>born: {new Date(batch.start_date).toDateString()}</h5>
+                                </CardSubtitle>
                               </Col>
-                              <Col>
+                              <Col sm="2" >
                                 <img src={fermentIcons[batch.ferment]} height='100px' />
                               </Col>
                           </Row>
@@ -112,12 +114,7 @@ class BatchShow extends React.Component {
                             <Row>
                               <Col>
                                 <Link to="/newbatch"  style={{ textDecoration: 'none' }}>
-                                  <Button type="button" className="btn btn-secondary btn-lg btn-center" onClick={() => {this.updateBatch(batch)}}>Edit</Button>
-                                </Link>
-                              </Col>
-                              <Col >
-                                <Link to="/newbatch"  style={{ textDecoration: 'none' }}>
-                                  <Button type="button" className="btn btn-secondary btn-lg" onClick={() => {this.deletedBatch(batch)}}>Delete</Button>
+                                  <Button type="button" className="btn btn-warning btn-lg" onClick={() => {this.deletedBatch(batch)}}>delete me</Button>
                                 </Link>
                               </Col>
                             </Row>
@@ -134,22 +131,10 @@ class BatchShow extends React.Component {
                                     {batch.tasks.map((task,index)=> {
                                         let contextColor = task.completed ? 'lightgreen' : 'whitesmoke'
                                         return(
-                                            <li id={task.id} key={index} className="list-group-item" style={{backgroundColor: `${contextColor}`}}>
-                                                <Row>
-                                                    <Col sm={8}>
-                                                        <h4> Due: {new Date(task.due).toDateString()}: {task.title}</h4>
-                                                    </Col>
-                                                    <Col sm={4}>
-                                                        {   task.completed 
-                                                            ? <h6>Completed!</h6>
-                                                            : <img id={task.id}
-                                                            className='checkmark'
-                                                            align="right"
-                                                            src={Checkmark}
-                                                            onClick={this.markTaskCompleted}
-                                                        />}
-                                                    </Col>
-                                                </Row>
+                                            <li key={index} className="list-group-item">
+                                                <h5> Due: {new Date(task.due).toDateString()}</h5>
+                                                <h5> {task.title}</h5>
+                                                <h6> {task.description}</h6>
                                             </li>
                                         )
                                     })}
@@ -168,6 +153,23 @@ class BatchShow extends React.Component {
 
 export default BatchShow;
 
+
+{/* <li id={task.id} key={index} className="list-group-item" style={{ backgroundColor: `${contextColor}` }}>
+    <Row>
+        <Col sm={8}>
+            <h4> Due: {new Date(task.due).toDateString()}: {task.title}</h4>
+        </Col>
+        <Col sm={4}>
+            {task.completed
+                ? <h6>Completed!</h6>
+                : <img id={task.id}
+                    className='checkmark'
+                    align="right"
+                    src={Checkmark}
+                    onClick={this.markTaskCompleted}
+                />}
+        </Col>
+    </Row> */}
 //adding notes soon
 // <ul className="list-group list-group-flush">
 //     {batch.notes.map((note,index)=> {
@@ -179,3 +181,8 @@ export default BatchShow;
 //         )
 //     })}
 // </ul>
+
+//button to update batch
+// <Link to="/newbatch"  style={{ textDecoration: 'none' }}>
+//   <Button type="button" className="btn btn-secondary btn-lg btn-center" onClick={() => {this.updateBatch(batch)}}>Edit</Button>
+// </Link>
