@@ -32,7 +32,6 @@ const Dashboard = (props) => {
 
     const markCompleted = (e) => {
         let task = tasks.find(v => v.id === +e.target.id)
-        task.completed = true
         markTaskDone(task)
         props.completeTask(task)
     }
@@ -49,7 +48,9 @@ const Dashboard = (props) => {
                                             <li key={index} className="list-group-item" id="task-items">
                                               <Row>
                                                 <Col sm={8}>
-                                                  <h6>Due: {new Date(task.due).toDateString()}</h6>
+                                                    <h5>Due: {new Date(task.due).toDateString()}</h5>
+                                                    <h5>{task.title}</h5>
+                                                    <h5>Batch: <em>{batches.find(b => b.id === task.batch_id).name}</em></h5>
                                                 </Col>
                                                 <Col sm={4}>
                                                     <img id={task.id}
@@ -60,7 +61,6 @@ const Dashboard = (props) => {
                                                     />
                                                 </Col>
                                               </Row>
-                                                <h6>{task.title}</h6>
                                             </li>
                                         )
                                     })}

@@ -3,11 +3,23 @@ import {
     Container,
     Card,
     CardBody,
-    CardTitle
+    CardTitle,
+    Row,
+    Col
 } from 'reactstrap';
+import { markTaskDone } from '../apiCalls.js'
+import Checkmark from 'images/checkmark.png'
+import '../../../assets/stylesheets/checkmark.css'
 
 const Tasks = (props) => {
-    let { tasks } = props
+    const markTaskCompleted = (e) => {
+        let task = props.tasks.find(v => v.id === +e.target.id)
+        markTaskDone(task)
+        props.completeTask(task)
+    }
+
+    console.log(props)
+    let { tasks, batches } = props
     return(
         <Container>
             <Card className="card text-secondary bg-secondary mb-3" >
@@ -17,9 +29,24 @@ const Tasks = (props) => {
                             {tasks.map((task,index)=> {
                                 return(
                                     <li key={index} className="list-group-item">
-                                        <h5>Due: {new Date(task.due).toDateString()}</h5>
-                                        <h5>{task.title}</h5>
-                                        <h6> {task.description} </h6>
+                                        <Row>
+                                        <Col sm={8}>
+                                            <h5>Due: {new Date(task.due).toDateString()}</h5>
+                                            <h5>{task.title}</h5>
+                                            <h5>Batch: <em>{batches.find(b => b.id === task.batch_id).name}</em></h5>
+                                            <h6>{task.description}</h6> 
+                                        </Col>
+                                        <Col sm={4}>
+                                            {task.completed
+                                                ? <h6 align="right">Completed!</h6>
+                                                : <img id={task.id}
+                                                    className='checkmark'
+                                                    align="right"
+                                                    src={Checkmark}
+                                                    onClick={markTaskCompleted}
+                                            />}
+                                        </Col>
+                                        </Row>
                                     </li>
                                 )
                             })}

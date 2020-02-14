@@ -33,7 +33,7 @@ class BatchesController < ApplicationController
             if batch.valid?
                 # looks for our hard-coded task presets (see below)
                 @default_tasks[batch[:ferment]].each do |task|
-                    task[:due] = task[:due].days.since(DateTime.now).noon.to_datetime
+                    task[:due] = task[:due].days.since(batch.start_date).noon.to_datetime
                     batch.tasks.create(task)
                 end
                 render json: batch.to_json(include: :tasks)
@@ -51,6 +51,11 @@ class BatchesController < ApplicationController
             if batch
                 batch.update(batch_params)
                 render json: batch
+            end
+            if batch.completed
+                batch.tasks.each do |task|
+                    task.update_attributes({completed: true})
+                end
             end
         else
             render plain: 'Not signed in'
