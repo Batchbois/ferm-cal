@@ -10,7 +10,7 @@ import {
 } from 'reactstrap'
 import { Link } from "react-router-dom";
 import { getBatches, deleteBatch, markBatchDone, markTaskDone } from '../apiCalls.js';
-import Checkmark from 'images/checkmark.png'
+import Checkmark from 'images/check-mark.png'
 import 'images/minorstyling/checkmark.css'
 import Pickle from 'images/pickle.png'
 import Beer from 'images/beer-bottle.png'

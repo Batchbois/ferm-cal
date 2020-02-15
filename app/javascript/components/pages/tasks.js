@@ -8,7 +8,7 @@ import {
     Col
 } from 'reactstrap';
 import { markTaskDone } from '../apiCalls.js'
-import Checkmark from 'images/checkmark.png'
+import Checkmark from 'images/check-mark.png'
 import 'images/minorstyling/checkmark.css'
 
 const Tasks = (props) => {
