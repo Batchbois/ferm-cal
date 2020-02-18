@@ -15,10 +15,10 @@ import {
     Input,
     Label
 } from 'reactstrap';
-import Checkmark from 'images/checkmark.png'
+import Checkmark from 'images/check-mark.png'
 import Pickle from 'images/pickle.png'
 import Beer from 'images/beer-bottle.png'
-import '../../../assets/stylesheets/checkmark.css'
+import 'images/minorstyling/checkmark.css'
 import { markTaskDone } from '../apiCalls'
 
 const Dashboard = (props) => {
@@ -32,7 +32,6 @@ const Dashboard = (props) => {
 
     const markCompleted = (e) => {
         let task = tasks.find(v => v.id === +e.target.id)
-        task.completed = true
         markTaskDone(task)
         props.completeTask(task)
     }
@@ -45,21 +44,32 @@ const Dashboard = (props) => {
                             <CardTitle className="card-title text-white"><h2>Upcoming Tasks</h2></CardTitle>
                                 <ul className="list-group list-group-flush" id= "tasks-upcoming" style={taskSize}>
                                     {tasks.filter(v => !v.complete).map((task,index)=> {
+
                                         return(
                                             <li key={index} className="list-group-item" id="task-items">
                                               <Row>
-                                                <Col sm={8}>
-                                                  <h6>Due: {new Date(task.due).toDateString()}</h6>
+                                                <Col sm="10">
+                                                    <h5>Due: {new Date(task.due).toDateString()}</h5>
+                                                    <h6>{task.title}</h6>
+                                                    <h6>{task.description}</h6>
                                                 </Col>
+<<<<<<< HEAD
                                                 <Col sm={4}>
+=======
+                                                <Col sm="2">
+>>>>>>> master
                                                     <img id={task.id}
                                                          className='checkmark'
                                                          align="right"
                                                          src={Checkmark}
+<<<<<<< HEAD
                                                          onClick={markCompleted}/>
+=======
+                                                         onClick={markCompleted}
+                                                    />
+>>>>>>> master
                                                 </Col>
                                               </Row>
-                                                <h6>{task.title}</h6>
                                             </li>
                                         )
                                     })}
@@ -73,7 +83,7 @@ const Dashboard = (props) => {
                         <CardBody>
                             <CardTitle className="card-title text-white"><h2>Batches</h2></CardTitle>
                                 <ul className="list-group list-group-flush" style={batchSize}>
-                                    {batches.map((batch,index)=> {
+                                    {batches.filter(v => !v.complete).map((batch,index)=> {
                                         return(
                                             <li key={index} id="batch-items" className="list-group-item">
                                                 <Row>
@@ -86,7 +96,7 @@ const Dashboard = (props) => {
                                                     <img src={fermentIcons[batch.ferment]} height='30px' />
                                                   </Col>
                                                 </Row>
-                                                <h6>{batch.ferment} Start: {batch.start_date}</h6>
+                                                <h6>{batch.ferment} start:  {new Date(batch.start_date).toDateString()}</h6>
                                             </li>
                                         )
                                     })}
@@ -103,3 +113,4 @@ const Dashboard = (props) => {
     )
 }
 export default Dashboard;
+// <h5>Batch: <em>{batches.find(b => b.id === task.batch_id).name}</em></h5>

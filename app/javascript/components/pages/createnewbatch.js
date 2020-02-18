@@ -31,13 +31,10 @@ class CreateNewBatch extends React.Component {
     createNewBatch = (batch) => {
         createBatch(batch)
         .then((response) => {
-            console.log(response);
             if(response.ok){
+                this.setState({success:true})
                 return this.getBatchList()
             }
-        })
-        .then(() => {
-            this.setState({success:true})
         })
         .catch(error => console.log(error))
     }
@@ -54,7 +51,8 @@ class CreateNewBatch extends React.Component {
 
 render() {
     let { name, ferment, start_date, description } = this.state.form
-
+    {this.state.success &&
+        <Redirect to="/"/>}
 
   return (
     <div>
@@ -85,7 +83,10 @@ render() {
                             <Label for="description">Description:</Label>
                             <Input onChange={this.handleChange} value={description}  type="textarea" name="description" id="description" placeholder="Notes about ingredients, temperature, quantity, etc."/>
                         </FormGroup>
+
+
                         <Button onClick={() => this.createNewBatch(this.state.form)} type="submit">Submit</Button>
+
                     </Form>
                     {this.state.success &&
                         <Redirect to="/"/>}

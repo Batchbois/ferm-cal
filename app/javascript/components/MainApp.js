@@ -65,6 +65,15 @@ class MainApp extends React.Component {
         this.setState({tasks: tasks})
     }
 
+    completeBatch = (b) => {
+        let { batches } = this.state
+        batches[batches.findIndex(v => v.id === b.id)].complete = true
+        this.setState({batches: batches})
+        b.tasks.forEach(task => {
+            this.completeTask(task)
+        });
+    }
+
     render () {
         const { signed_in } = this.props
         const { batches, tasks } = this.state
@@ -72,25 +81,29 @@ class MainApp extends React.Component {
         <div style={{...backgroundImageStyles}}>
           <Router>
             <Header appProps={this.props}/>
-              <Container style={{marginTop: '1%'}}>
-                  <Switch>
-                      <Route exact path= "/" render={() => {
-                          if (signed_in) {
-                              return <Dashboard batches={this.state.batches} tasks={this.state.tasks} completeTask={this.completeTask} />
-                          } else {
-                              return <NotSignedInLanding/>
-                          }
-                      }}/>
-                      <Route path="/aboutus" component={AboutUs} />
-                      <Route path="/dashboard" render={() => <Dashboard /> } />
-                      <Route path="/archive" render={(props) =><Archive {...props} batches={batches.filter(v => v.completed === true)}/>}/>
-                      <Route path="/tasks" render={(props) =><Tasks {...props} tasks={tasks}/>}/>
-                      <Route path="/active" render={(props) =><Active {...props} batches={batches.filter(v => v.completed === false)}/>}/>
-                      <Route exact path="/batches/:id" render={(props) =><BatchShow {...props} batches={batches}  />}/>
-
-
-
-                      <Route path="/newbatch" render={(props) =><CreateNewBatch />}/>
+            <Container style={{marginTop: '2%'}}>
+                <Switch>
+                    <Route exact path= "/" render={() => {
+                        if (signed_in) {
+                            return <Dashboard batches={batches} tasks={tasks} completeTask={this.completeTask} />
+                        } else {
+                            return <NotSignedInLanding/>
+                        }
+                    }}/>
+                    <Route path="/aboutus" component={AboutUs} />
+                    <Route path="/archive" render={() => <Archive batches={batches.filter(v => v.completed)}/>}/>
+                    <Route path="/tasks" render={() => <Tasks
+                                                          tasks={tasks}
+                                                          batches={batches}
+                                                          completeTask={this.completeTask}
+                                                        />}/>
+                    <Route path="/active" render={(props) =><Active {...props} batches={batches.filter(v => v.completed === false)}/>}/>
+                    <Route exact path="/batches/:id" render={(props) => <BatchShow {...props}
+                                                                            batches={batches}
+                                                                            completeTask={this.completeTask}
+                                                                            completeBatch={this.completeBatch}
+                                                                        />}/>
+                    <Route path="/newbatch" render={(props) =><CreateNewBatch />}/>
 
 
                   </Switch>
