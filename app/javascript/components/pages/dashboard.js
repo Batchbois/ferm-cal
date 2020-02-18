@@ -53,21 +53,13 @@ const Dashboard = (props) => {
                                                     <h6>{task.title}</h6>
                                                     <h6>{task.description}</h6>
                                                 </Col>
-<<<<<<< HEAD
-                                                <Col sm={4}>
-=======
                                                 <Col sm="2">
->>>>>>> master
                                                     <img id={task.id}
                                                          className='checkmark'
                                                          align="right"
                                                          src={Checkmark}
-<<<<<<< HEAD
-                                                         onClick={markCompleted}/>
-=======
                                                          onClick={markCompleted}
                                                     />
->>>>>>> master
                                                 </Col>
                                               </Row>
                                             </li>

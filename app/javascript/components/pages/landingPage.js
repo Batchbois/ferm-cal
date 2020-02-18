@@ -3,14 +3,7 @@ import {Jumbotron, Button, Link} from 'reactstrap'
 import PickleGreen from 'images/picklegreen.svg';
 
 const NotSignedInLanding = () => {
-<<<<<<< HEAD
 
-    return(
-            <h1> WELCOME TO FERMCAL
-                <br/>
-                SIGN UP AND HAVE A BATCHIN' GOOD TIME
-            </h1>
-=======
     const title = {"textAlign": "center", "color": "#56CC9D"}
     const text = {"textAlign": "center"}
     const jumbotron = { "borderWidth": "0.4rem", "background": "white"}
@@ -27,7 +20,6 @@ const NotSignedInLanding = () => {
 
 
         </div>
->>>>>>> master
 
     )
 }
