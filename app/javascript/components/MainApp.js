@@ -5,6 +5,9 @@ import {
     Switch,
     Link
 } from 'react-router-dom';
+
+import Background from 'images/germtile.png'
+
 import { Container } from 'reactstrap'
 
 import Header from './Header';
@@ -19,6 +22,12 @@ import CreateNewBatch from "./pages/createnewbatch";
 import UpdateBatch from './pages/batchUpdate';
 import { getBatches, getTasks } from './apiCalls.js';
 
+const backgroundImageStyles = {
+  backgroundImage: `url(${Background})`,
+  height: "100vh",
+  backgroundRepeat: "repeat",
+  backgroundSize: "contain",
+}
 
 class MainApp extends React.Component {
     constructor(props) {
@@ -69,7 +78,7 @@ class MainApp extends React.Component {
         const { signed_in } = this.props
         const { batches, tasks } = this.state
         return (
-        <div>
+        <div style={{...backgroundImageStyles}}>
           <Router>
             <Header appProps={this.props}/>
             <Container style={{marginTop: '2%'}}>
@@ -83,22 +92,22 @@ class MainApp extends React.Component {
                     }}/>
                     <Route path="/aboutus" component={AboutUs} />
                     <Route path="/archive" render={() => <Archive batches={batches.filter(v => v.completed)}/>}/>
-                    <Route path="/tasks" render={() => <Tasks 
-                                                          tasks={tasks} 
+                    <Route path="/tasks" render={() => <Tasks
+                                                          tasks={tasks}
                                                           batches={batches}
                                                           completeTask={this.completeTask}
                                                         />}/>
                     <Route path="/active" render={(props) =><Active {...props} batches={batches.filter(v => v.completed === false)}/>}/>
-                    <Route exact path="/batches/:id" render={(props) => <BatchShow {...props} 
-                                                                            batches={batches} 
+                    <Route exact path="/batches/:id" render={(props) => <BatchShow {...props}
+                                                                            batches={batches}
                                                                             completeTask={this.completeTask}
                                                                             completeBatch={this.completeBatch}
                                                                         />}/>
                     <Route path="/newbatch" render={(props) =><CreateNewBatch />}/>
 
 
-                </Switch>
-            </Container>
+                  </Switch>
+              </Container>
           </Router>
         </div>
     );
