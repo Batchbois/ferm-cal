@@ -30,9 +30,9 @@ class CreateNewBatch extends React.Component {
 
     createNewBatch = (batch) => {
         createBatch(batch)
+        this.setState({success:true})
         .then((response) => {
             if(response.ok){
-                this.setState({success:true})
                 return this.getBatchList()
             }
         })
@@ -88,8 +88,6 @@ render() {
                         <Button onClick={() => this.createNewBatch(this.state.form)} type="submit">Submit</Button>
 
                     </Form>
-                    {this.state.success &&
-                        <Redirect to="/"/>}
 
                 </Col>
                 <Col sm="5" lg="5">
