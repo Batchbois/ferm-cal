@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link } from 'react-router-dom';
 import AboutUs from './pages/aboutus';
-
+import Pickle from 'images/pickle1.svg'
 
 import {
   Collapse,
@@ -29,7 +29,9 @@ const Header = (props) => {
     return(
         <div>
             <Navbar className="navbar navbar-expand-sm navbar-dark bg-success">
-              <NavbarBrand href="/">ferm-cal</NavbarBrand>
+
+              <NavbarBrand href="/">ferm-cal <img src={Pickle}/></NavbarBrand>
+
               <NavbarToggler onClick={toggle} />
               <Collapse isOpen={isOpen} navbar>
                 <Nav className="mr-auto" navbar>
