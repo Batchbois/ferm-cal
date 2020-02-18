@@ -8,8 +8,8 @@ import {
     Col
 } from 'reactstrap';
 import { markTaskDone } from '../apiCalls.js'
-import Checkmark from 'images/checkmark.png'
-import '../../../assets/stylesheets/checkmark.css'
+import Checkmark from 'images/check-mark.png'
+import 'images/minorstyling/checkmark.css'
 
 const Tasks = (props) => {
     const markTaskCompleted = (e) => {
@@ -34,7 +34,7 @@ const Tasks = (props) => {
                                             <h5>Due: {new Date(task.due).toDateString()}</h5>
                                             <h5>{task.title}</h5>
                                             <h5>Batch: <em>{batches.find(b => b.id === task.batch_id).name}</em></h5>
-                                            <h6>{task.description}</h6> 
+                                            <h6>{task.description}</h6>
                                         </Col>
                                         <Col sm={4}>
                                             {task.completed

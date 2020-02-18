@@ -10,8 +10,8 @@ import {
 } from 'reactstrap'
 import { Link } from "react-router-dom";
 import { getBatches, deleteBatch, markBatchDone, markTaskDone } from '../apiCalls.js';
-import Checkmark from 'images/checkmark.png'
-import '../../../assets/stylesheets/checkmark.css'
+import Checkmark from 'images/check-mark.png'
+import 'images/minorstyling/checkmark.css'
 import Pickle from 'images/pickle.png'
 import Beer from 'images/beer-bottle.png'
 
@@ -95,7 +95,7 @@ class BatchShow extends React.Component {
                                         <h6>{batch.description}</h6>
                                     </Col>
                                     <Col sm={4}>
-                                    {   batch.completed 
+                                    {   batch.completed
                                         ? <h6>Completed!</h6>
                                         : <img id={batch.id}
                                         className='checkmark'
@@ -105,7 +105,7 @@ class BatchShow extends React.Component {
                                         />}
                                     </Col>
                                 </Row>
-                            
+
                             </li></ul>
                             <Row>
                               <Col>

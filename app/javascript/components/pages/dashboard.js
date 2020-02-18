@@ -15,10 +15,10 @@ import {
     Input,
     Label
 } from 'reactstrap';
-import Checkmark from 'images/checkmark.png'
+import Checkmark from 'images/check-mark.png'
 import Pickle from 'images/pickle.png'
 import Beer from 'images/beer-bottle.png'
-import '../../../assets/stylesheets/checkmark.css'
+import 'images/minorstyling/checkmark.css'
 import { markTaskDone } from '../apiCalls'
 
 const Dashboard = (props) => {
@@ -75,7 +75,7 @@ const Dashboard = (props) => {
                         <CardBody>
                             <CardTitle className="card-title text-white"><h2>Batches</h2></CardTitle>
                                 <ul className="list-group list-group-flush" style={batchSize}>
-                                    {batches.map((batch,index)=> {
+                                    {batches.filter(v => !v.complete).map((batch,index)=> {
                                         return(
                                             <li key={index} id="batch-items" className="list-group-item">
                                                 <Row>
