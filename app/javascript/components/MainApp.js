@@ -65,6 +65,7 @@ class MainApp extends React.Component {
         this.setState({tasks: tasks})
     }
 
+
     completeBatch = (b) => {
         let { batches } = this.state
         batches[batches.findIndex(v => v.id === b.id)].complete = true

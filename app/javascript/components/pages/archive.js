@@ -13,7 +13,7 @@ const Archive = (props) => {
         <Container>
             <Card className="card text-info bg-info mb-3" id= "batches">
                 <CardBody>
-                    <CardTitle className="card-title text-white"><h2>Batches</h2></CardTitle>
+                    <CardTitle className="card-title text-white"><h2>Archived Batches</h2></CardTitle>
                         <ul className="list-group list-group-flush">
                             {batches.map((batch,index)=> {
                                 return(
@@ -31,5 +31,4 @@ const Archive = (props) => {
         </Container>
     )
 }
-
 export default Archive;

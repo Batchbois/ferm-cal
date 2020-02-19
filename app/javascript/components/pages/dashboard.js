@@ -21,6 +21,7 @@ import Beer from 'images/beer-bottle.svg'
 import 'images/minorstyling/checkmark.css'
 import { markTaskDone } from '../apiCalls'
 
+
 const Dashboard = (props) => {
     let { batches, tasks } = props
     const taskSize = {"maxHeight": "500px", "overflowY": "scroll"}
@@ -59,6 +60,7 @@ const Dashboard = (props) => {
                                                          align="right"
                                                          src={Checkmark}
                                                          onClick={markCompleted}
+                                                         onHover={Checkmark}
                                                     />
                                                 </Col>
                                               </Row>
