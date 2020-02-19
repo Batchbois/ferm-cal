@@ -1,6 +1,7 @@
 import Kimberly from "images/kimberly.jpg";
 import Samuel from "images/samuel.jpg";
 import Brenden from "images/brenden1.jpg"
+import Sabrina from 'images/sabrinaport.jpg'
 
 import React from 'react';
 import {
@@ -68,7 +69,7 @@ const AboutUs = () => {
             <Row style={{marginBottom: "1%"}}>
                 <Col md={6}>
                     <Card style={sabborder}>
-                      <CardImg top width="100%" style={{borderRadius: "0%"}} src={Samuel} alt="Sabrina" />
+                      <CardImg top width="100%" style={{borderRadius: "0%"}} src={Sabrina} alt="Sabrina" />
                           <CardBody style={title}>
                           <CardTitle style ={cardtitle}>Sabrina Randall</CardTitle>
                           <CardText>Pink hair, steals chairs for a living. lorem orem torem zorem, idk what to say.</CardText>

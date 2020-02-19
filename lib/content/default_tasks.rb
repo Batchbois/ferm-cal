@@ -8,7 +8,7 @@ $default_tasks = {
         },
         {
             title: 'Secondary starts',
-            description: 'Check specific gravity to ensure it\'s finished and record measurement. Transfer beer off of trub and dry-hop (optional) if ready. Mae sure all materials are clean!',
+            description: 'Check specific gravity to ensure it\'s finished and record measurement. Transfer beer off of trub and dry-hop (optional) if ready. Make sure all materials are clean!',
             completed: false,
             due: 7
         },

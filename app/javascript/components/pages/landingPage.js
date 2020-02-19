@@ -2,6 +2,11 @@ import React from "react";
 import {Jumbotron, Row, Button, Link} from 'reactstrap'
 import PickleGreen from 'images/picklegreen.svg';
 import BottleIcon from "images/beericon.svg"
+import DashboardPic from 'images/dashboard.png';
+import TasksPic from 'images/tasks.png'
+import BatchShowPic from "images/batchshow.png";
+
+
 
 const NotSignedInLanding = () => {
 
@@ -22,7 +27,9 @@ const NotSignedInLanding = () => {
                <hr className="my-2" />
                 <a href="users/sign_up" style={{ textDecoration: 'none' }}> <Button type="button" className="btn btn-info btn-lg btn-block">Sign up & have a batchin' good time!</Button> </a>
             </Jumbotron>
-
+            <img src={DashboardPic}  alt="dashboard sample"/>
+            <img src={TasksPic} alt="task sample"/>
+            <img src={BatchShowPic} alt="Batch example"/>
 
         </div>
 
