@@ -6,7 +6,7 @@ ___
 #### Built by Team Batch Boiz: [Kimberly Leonard](https://www.github.com/kimberlyleo), [Samuel Bates](https://www.github.com/samboozle), [Sabrina Banks Randall](https://www.github.com/sabrinabanks), & [Brenden Barta](https://www.github.com/brendenbarta)  
   
 Our responsive app allows mad fermtationists to manage their active fermentations and cellars.  
-Users can create new batches and the app will manage the batch's info. The app will create tasks events for all the standard steps that need to be completed. Users can record their batch notes, create record recipes, and batch start and end dates in the same place.  
+Users can create new batches and the app will manage the batch's info. The app will create tasks events for all the standard steps that need to be completed. Users can record their batch notes, recipes, and the start and end dates in one simple app.  
 
 
 ![dashboard](https://user-images.githubusercontent.com/57583457/74859589-25f0dd80-52fc-11ea-896d-16151313abfc.png "User Dashboard")
