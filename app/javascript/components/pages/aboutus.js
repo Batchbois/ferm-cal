@@ -38,7 +38,7 @@ const textBox = {background: "white", borderRadius: "2%", padding: 5, border: '5
 
 const AboutUs = () => {
     return(
-        <>
+        <div style={{marginBottom: "12px"}}>
             <div style={textBox}>
                 <h1 style={title}>About Us</h1>
                 <p style={heading}> Welcome to Ferm-Cal; we're so glad you're here.
@@ -50,7 +50,7 @@ const AboutUs = () => {
                     <CardImg top width="100%" style={{borderRadius: "0%"}} src={Kimberly} alt="Kimberly" />
                         <CardBody style={title}>
                           <CardTitle style={cardtitle}>Kimberly Leonard</CardTitle>
-                          <CardText>Kimberly is fermcal's fearless project lead and chief frontend engineer. Her background in fermentation science is what equipped her to build this app!</CardText>
+                          <CardText style={{textAlign: "justify"}}>Kimberly is fermcal's project lead and chief frontend engineer. Her background in fermentation science is what inspired this app!</CardText>
                           <a href="https://github.com/kimberlyleo" target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none' }}><Button color="success"  >Contact</Button> </a>
                         </CardBody>
                   </Card>
@@ -60,7 +60,7 @@ const AboutUs = () => {
                     <CardImg top width="100%" style={{borderRadius: "0%"}} src={Brenden} alt="Brenden" />
                         <CardBody style={title}>
                           <CardTitle style ={cardtitle}>Brenden Barta</CardTitle>
-                          <CardText>Brenden belongs to the fermcal backend team. He's also one of #batchbois' QA specialists.</CardText>
+                          <CardText style={{textAlign: "justify"}}>Brenden belongs to the fermcal backend team. He's one of #batchbois' QA specialists. He provides all the team snacks.</CardText>
                           <a href="https://github.com/brendenbarta" target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none' }}><Button color="success"  >Contact</Button> </a>
                         </CardBody>
                   </Card>
@@ -72,7 +72,7 @@ const AboutUs = () => {
                       <CardImg top width="100%" style={{borderRadius: "0%"}} src={Sabrina} alt="Sabrina" />
                           <CardBody style={title}>
                           <CardTitle style ={cardtitle}>Sabrina Randall</CardTitle>
-                          <CardText>Sabrina is fermcal's frontend designer. A photographer by trade, Sabrina used her talents to defy all logic and make these germs CUTE.</CardText>
+                          <CardText style={{textAlign: "justify"}}>Sabrina is fermcal's frontend designer. A photographer by trade, Sabrina used her talents to  make these germs CUTE.</CardText>
                           <a href="https://github.com/sabrinabanks" target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none' }}><Button color="success"  >Contact</Button> </a>
                           </CardBody>
                     </Card>
@@ -82,13 +82,13 @@ const AboutUs = () => {
                       <CardImg top width="100%" style={{borderRadius: "0%"}} src={Samuel} alt="Samuel" />
                           <CardBody style={title}>
                           <CardTitle style ={cardtitle}>Samuel Bates</CardTitle>
-                          <CardText>Samuel is fermcal's database architect and backend engineer. He also operates a small fermentation facility under his beanie.</CardText>
+                          <CardText style={{textAlign: "justify"}}>Samuel is fermcal's database architect and backend engineer. He also operates a small fermentation facility under his beanie.</CardText>
                           <a href="https://github.com/samboozle" target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none' }}><Button color="success"  >Contact</Button> </a>
                           </CardBody>
                   </Card>
                 </Col>
             </Row>
-        </>
+        </div>
     )
 }
 export default AboutUs;
