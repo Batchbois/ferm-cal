@@ -16,8 +16,8 @@ import {
     Label
 } from 'reactstrap';
 import Checkmark from 'images/check-mark.png'
-import Pickle from 'images/pickle.png'
-import Beer from 'images/beer-bottle.png'
+import Pickle from 'images/pickle.svg'
+import Beer from 'images/beer-bottle.svg'
 import 'images/minorstyling/checkmark.css'
 import { markTaskDone } from '../apiCalls'
 
