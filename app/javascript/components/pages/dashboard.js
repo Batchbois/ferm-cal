@@ -18,8 +18,9 @@ import {
 import Checkmark from 'images/check-mark.png'
 import Pickle from 'images/pickle.png'
 import Beer from 'images/beer-bottle.png'
-import 'images/minorstyling/checkmark.css'
+
 import { markTaskDone } from '../apiCalls'
+
 
 const Dashboard = (props) => {
     let { batches, tasks } = props
@@ -59,6 +60,7 @@ const Dashboard = (props) => {
                                                          align="right"
                                                          src={Checkmark}
                                                          onClick={markCompleted}
+                                                         onHover={Checkmark}
                                                     />
                                                 </Col>
                                               </Row>
