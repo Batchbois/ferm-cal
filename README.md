@@ -12,7 +12,7 @@ Users can create new batches and the app will manage the batch's info. The app w
   
 ![tasks](https://user-images.githubusercontent.com/57583457/74862019-36a35280-5300-11ea-8c80-6ae407b0529c.png "User Upcoming Tasks")
   
-!align="center"[Screen Shot 2020-02-19 at 10 01 38 AM](https://user-images.githubusercontent.com/57583457/74861636-8e8d8980-52ff-11ea-8234-272207b6e40e.png)
+![Screen Shot 2020-02-19 at 10 01 38 AM](https://user-images.githubusercontent.com/57583457/74861636-8e8d8980-52ff-11ea-8234-272207b6e40e.png)
   
 ![Screen Shot 2020-02-19 at 10 02 49 AM](https://user-images.githubusercontent.com/57583457/74861641-90574d00-52ff-11ea-83da-380519c6549a.png)
   
