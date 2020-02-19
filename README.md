@@ -1,6 +1,9 @@
 # FERM CAL
 ___
-#### Check out this great tool for organization and task management for your home-fermentations (beer, pickles, kimchi, sauerkraut, etc!)
+#### Check out this great tool to keep your fermentations and beer batches organized! Never miss another important step! Never lose another note! You can use Ferm-Cal for making beer, pickles, kimchi, sauerkraut, etc!)  
+##### Full Stack App built using React on Rails   
+##### Built by Team Batch Boiz  
+[Kimberly Leonard](https://www.github.com/kimberlyleo), [Samuel Bates](https://www.github.com/samboozle), [Sabrina Banks Randall](https://www.github.com/sabrinabanks), & [Brenden Barta](https://www.github.com/brendenbarta)  
   
 Our responsive app allows mad fermtationists to manage their active fermentations and cellars.  
 Users can create new batches and the app will manage the batch's info. The app will create tasks events for all the standard steps that need to be completed. Users can record their batch notes, create record recipes, and batch start and end dates in the same place.  
