@@ -12,8 +12,8 @@ import { Link } from "react-router-dom";
 import { getBatches, deleteBatch, markBatchDone, markTaskDone } from '../apiCalls.js';
 import Checkmark from 'images/check-mark.png'
 import 'images/minorstyling/checkmark.css'
-import Pickle from 'images/pickle.png'
-import Beer from 'images/beer-bottle.png'
+import Pickle from 'images/pickle.svg'
+import Beer from 'images/beer-bottle.svg'
 
 class BatchShow extends React.Component {
     constructor(props) {
@@ -69,7 +69,7 @@ class BatchShow extends React.Component {
           pickle: Pickle,
           beer: Beer
         }
-
+        const img = {marginBottom: 10}
 
     return(
         <div>
@@ -85,7 +85,7 @@ class BatchShow extends React.Component {
                                 </CardSubtitle>
                               </Col>
                               <Col sm="2" >
-                                <img src={fermentIcons[batch.ferment]} height='100px' />
+                                <img src={fermentIcons[batch.ferment]} height='100px' style={img}/>
                               </Col>
                           </Row>
                             <ul className="list-group list-group-flush" style={{marginBottom: '1%'}}>

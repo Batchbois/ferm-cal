@@ -24,7 +24,7 @@ import { getBatches, getTasks } from './apiCalls.js';
 
 const backgroundImageStyles = {
   backgroundImage: `url(${Background})`,
-  height: "100vh",
+  minHeight: "100vh",
   backgroundRepeat: "repeat",
   backgroundSize: "contain",
 }

@@ -12,7 +12,7 @@ import {
 } from 'reactstrap';
 import { Redirect } from "react-router-dom"
 import { createBatch, getBatches} from '../apiCalls.js';
-import Bug from 'images/bugs.jpg'
+
 
 class CreateNewBatch extends React.Component {
     constructor(props) {
@@ -30,9 +30,9 @@ class CreateNewBatch extends React.Component {
 
     createNewBatch = (batch) => {
         createBatch(batch)
+        this.setState({success:true})
         .then((response) => {
             if(response.ok){
-                this.setState({success:true})
                 return this.getBatchList()
             }
         })
@@ -51,6 +51,8 @@ class CreateNewBatch extends React.Component {
 
 render() {
     let { name, ferment, start_date, description } = this.state.form
+    const form = {background: "white", alignItems: "center", borderRadius: "2%", padding: 10, border: '5px solid #FFCE67' }
+
     {this.state.success &&
         <Redirect to="/"/>}
 
@@ -58,10 +60,12 @@ render() {
     <div>
         <Container>
             <Row>
-                <Col sm="7" lg="7">
-                    <Form>
-
+                <Col >
+                    <Form style={form}>
+                    <FormGroup>
                         <FormGroup>
+                            <h2>Create a new batch</h2>
+                        </FormGroup>
                             <Label for="name">Batch Name</Label>
                             <Input onChange={this.handleChange} value={name} type="text" name="name" id="name" placeholder="Grand Ol' Pickles"/>
                         </FormGroup>
@@ -85,16 +89,12 @@ render() {
                         </FormGroup>
 
 
-                        <Button onClick={() => this.createNewBatch(this.state.form)} type="submit">Submit</Button>
+                        <Button onClick={() => this.createNewBatch(this.state.form)} type="submit" className="btn-lg btn-block">Submit</Button>
 
                     </Form>
-                    {this.state.success &&
-                        <Redirect to="/"/>}
 
                 </Col>
-                <Col sm="5" lg="5">
-                    <img src={Bug} />
-                </Col>
+
             </Row>
         </Container>
     </div>
