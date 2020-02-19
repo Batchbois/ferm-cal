@@ -10,9 +10,7 @@ Users can create new batches and the app will manage the batch's info. The app w
   
 ![newbatch](https://user-images.githubusercontent.com/57583457/74859657-3dc86180-52fc-11ea-8214-7a5713c50d3e.png "Creating a new batch")
   
-![batchshow](http://localhost:3000/packs/media/images/batchshow-8901ecf5.png "Batch")
-  
-![tasks](http://localhost:3000/packs/media/images/tasks-291c3738.png "User Upcoming Tasks")
+![tasks](https://user-images.githubusercontent.com/57583457/74862019-36a35280-5300-11ea-8c80-6ae407b0529c.png "User Upcoming Tasks")
   
 ![Screen Shot 2020-02-19 at 10 01 38 AM](https://user-images.githubusercontent.com/57583457/74861636-8e8d8980-52ff-11ea-8234-272207b6e40e.png)
   
