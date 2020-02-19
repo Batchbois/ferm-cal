@@ -49,9 +49,9 @@ const AboutUs = () => {
                   <Card style={kimborder}>
                     <CardImg top width="100%" style={{borderRadius: "0%"}} src={Kimberly} alt="Kimberly" />
                         <CardBody style={title}>
-                          <CardTitle style={cardtitle}>Kimberly Leonard </CardTitle>
-                          <CardText>Good girl, says heck alot. lorem orem torem zorem, idk what to say.</CardText>
-                          <a href="https://github.com/kimberlyleo" target="_blank" style={{ textDecoration: 'none' }}><Button color="success"  >Contact</Button> </a>
+                          <CardTitle style={cardtitle}>Kimberly Leonard</CardTitle>
+                          <CardText>Kimberly is fermcal's fearless project lead and chief frontend engineer. Her background in fermentation science is what equipped her to build this app!</CardText>
+                          <a href="https://github.com/kimberlyleo" target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none' }}><Button color="success"  >Contact</Button> </a>
                         </CardBody>
                   </Card>
                 </Col>
@@ -59,9 +59,9 @@ const AboutUs = () => {
                   <Card style={breborder} >
                     <CardImg top width="100%" style={{borderRadius: "0%"}} src={Brenden} alt="Brenden" />
                         <CardBody style={title}>
-                          <CardTitle style ={cardtitle}>Brenden Barta </CardTitle>
-                          <CardText>hassavenyananashebedubeduo, is that how you say it? lorem orem torem zorem, idk what to say.</CardText>
-                          <a href="https://github.com/brendenbarta" target="_blank" style={{ textDecoration: 'none' }}><Button color="success"  >Contact</Button> </a>
+                          <CardTitle style ={cardtitle}>Brenden Barta</CardTitle>
+                          <CardText>Brenden belongs to the fermcal backend team. He's also one of #batchbois' QA specialists.</CardText>
+                          <a href="https://github.com/brendenbarta" target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none' }}><Button color="success"  >Contact</Button> </a>
                         </CardBody>
                   </Card>
                 </Col>
@@ -72,8 +72,8 @@ const AboutUs = () => {
                       <CardImg top width="100%" style={{borderRadius: "0%"}} src={Sabrina} alt="Sabrina" />
                           <CardBody style={title}>
                           <CardTitle style ={cardtitle}>Sabrina Randall</CardTitle>
-                          <CardText>Pink hair, steals chairs for a living. lorem orem torem zorem, idk what to say.</CardText>
-                          <a href="https://github.com/sabrinabanks" target="_blank" style={{ textDecoration: 'none' }}><Button color="success"  >Contact</Button> </a>
+                          <CardText>Sabrina is fermcal's frontend designer. A photographer by trade, Sabrina used her talents to defy all logic and make these germs CUTE.</CardText>
+                          <a href="https://github.com/sabrinabanks" target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none' }}><Button color="success"  >Contact</Button> </a>
                           </CardBody>
                     </Card>
                 </Col>
@@ -82,8 +82,8 @@ const AboutUs = () => {
                       <CardImg top width="100%" style={{borderRadius: "0%"}} src={Samuel} alt="Samuel" />
                           <CardBody style={title}>
                           <CardTitle style ={cardtitle}>Samuel Bates</CardTitle>
-                          <CardText>sassy boy, has a beanie fetish. lorem orem torem zorem, idk what to say</CardText>
-                          <a href="https://github.com/samboozle" target="_blank" style={{ textDecoration: 'none' }}><Button color="success"  >Contact</Button> </a>
+                          <CardText>Samuel is fermcal's database architect and backend engineer. He also operates a small fermentation facility under his beanie.</CardText>
+                          <a href="https://github.com/samboozle" target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none' }}><Button color="success"  >Contact</Button> </a>
                           </CardBody>
                   </Card>
                 </Col>
